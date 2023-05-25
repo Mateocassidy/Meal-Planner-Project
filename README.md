@@ -2,15 +2,17 @@
 
 ## Description
 
-I wanted a website to display a bmi calculator with meal options that allow you to hit those calories/macros for FREE! this section will be about what we learned after coding the project.. !
+I wanted a website to display a bmi calculator with meal options that allow you to hit those calories/macros for FREE! this section will be about what we learned AFTER coding the project.. !
 
 ## Table of Contents
 
 - [Group Members](#group-members)
+- [Two APIs](#two-api's)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
+- [Submission](#submission)
 
 ## Group Members
 
@@ -39,11 +41,17 @@ A website created to calculate your BMI and find meal plans to make sure youre h
 
 
 ## Credits
-Bootstrap v5.3.0 - https://getbootstrap.com/ created the framework
-Brayden Day - https://github.com/braydenday created the code for the project
-Chad Bowler - https://github.com/ChadBowler created the code for the project
-Jacobs Hargraves - https://github.com/jacobhargraves created the code for the project
-Matthew Cassidy - https://github.com/Mateocassidy created the code for the project
+* Bootstrap v5.3.0 - https://getbootstrap.com/ created the framework
+* Brayden Day - https://github.com/braydenday created the code for the project
+* Chad Bowler - https://github.com/ChadBowler created the code for the project
+* Jacobs Hargraves - https://github.com/jacobhargraves created the code for the project
+* Matthew Cassidy - https://github.com/Mateocassidy created the code for the project
+
+## Submission
+* Date Submitted: 
+* The URL of the deployed application: (https://mateocassidy.github.io/Meal-Planner-Project/)
+* The URL of the GitHub repository that contains your code: (https://github.com/mateocassidy/Meal-Planner-Project)
+* The URL of the PowerPoint Presentation Document: 
 
 ## License
 
