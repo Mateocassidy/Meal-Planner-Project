@@ -35,10 +35,10 @@ N/A . This is a web application using an URL link. https://mateocassidy.github.i
 
 A website created to calculate your BMI and find meal plans to make sure youre hitting those calories/macros according to your BMI!
 
-![home-page](/Assets/Screenshot1.png?raw=true "The Home Page")
-![results-page](/Assets/Screenshot2.png?raw=true "The Search Results Page")
-![first-api](/Assets/Screenshot3.png?raw=true "Second API")
-![second-api](/Assets/Screenshot4.png?raw=true "First API")
+![home-page](./Assets/Images/Screenshot1.png?raw=true "The Home Page")
+![results-page](./Assets/Images/Screenshot2.png?raw=true "The Search Results Page")
+![first-api](./Assets/Images/Screenshot3.png?raw=true "Second API")
+![second-api](./Assets/Images/Screenshot4.png?raw=true "First API")
 
 
 ## Credits
