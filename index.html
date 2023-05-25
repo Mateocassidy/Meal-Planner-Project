@@ -9,33 +9,116 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="./Assets/CSS/style.css">
-    <title>Eazy Meals | Free Planner</title>
+    <title>Eazy Mealz | Free Planner</title>
 </head>
 
 <body>
-    <!--Top part of the page-->
+    <!--top header part of the page. is commands will divide into columns and colors based on framework-->
     <section class="top is-dark">
         <div class="top-body">
             <div class="part" id="topPart">
-                <!-- <img id="logo" class="" src="./assets/images/logo.png" > we could add our own custom logo here -->
+                <!-- <img id="logo" class="" src="./assets/images/logo.png" > we could add our own custom logo here if someone wants to design that but thats beyond the MVP-->
                 <div class="titleTop">
-                    <h1 id="headerTitle">Eazy Meals</h1>
+                    <h1 id="headerTitle">Eazy Mealz</h1>
                     <h4 class="subtitle is-4" id="subHeader">The Free Meal Planner</h4>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End of Top part of page-->
+    <!-- this is the end of top header part of page-->
 
 
 
+<!-- WE NEED TO CODE IN THE BMI CALCULATOR API SOMEWHERE IN THIS SECTION OF THE BODY. -->
 
 
 
+  <!--these will be the search classes. is/has commands will divide into columns and colors based on framework again as above.-->
+  <div class="section main">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-4">
 
+          <!--this will be the search box for meals with a search bar and button. the search-field can be used as a value in a $(document).ready(function() in our js code -->
+          <form id="search-form" class="notification is-primary is-size-3">
+            <label class="label">Search For Meals</label>
+            <div class="field has-addons">
+              <div class="control">
+                <input class="input" type="text" placeholder="Enter Search" id="search-field">
+              </div>
+              <div class="control">
+                <a class="button is-info is-responsive" id="search-button">Search</a>
+              </div>
+            </div>
+          </form>
+          <!--same as above but this will be the search history with a clear local storage button tag. the local storage can be used later in our js code-->
+          <div class="notification has-background-grey-lighter" id="search-history">
+            <div class="search-clear">
+              <label class="label" id="history-label">Previous Search:</label>
+              <button class="Control">
+                <a class="button is-info is-responsive" id="clear-localStorage">Clear</a>
+              </button>
+            </div>
+            <p class="is-size-4" id='search-history-help'>Your Meal History</p>
+            <ul class="is-size-5" id="search-history-list">
+            </ul>
+          </div>
+        </div>
+        <!-- this is the end of the 2 search boxes -->
 
+<!--this should display an image of the meal, a title name for the meal, and the recipe section. THE EDAMAM API NEEDS TO BE LINKED INTO THIS SEARCH BAR SO WE CAN DISPLAY THE DETAILS.. right now when you search a food, it does nothing so this code will do nothing right now. -->
+          <div class="column is-8">
+          <div class="notification is-warning is-size-7" id="search-results-container" style="display: none;">
+            <div class="columns is-multiline" id="search-results" style="background-color: #19abd8;"></div>
+          </div>
+<!-- the go back button takes you back to all previous search results for that meal search. -->
+          <div class="notification is-default is-size-4" id="ingredients" style="display: none;">
+            <button class="button is-primary is-responsive" id="back-button">Back</button>
+            <!-- the food image, the food title, and the ingrediets in the top section with the back button next to it based on Edamam-->
+            <div class="columns">
+              <div class="column is-3">
+                <img id="ingredients_img" />
+              </div>
+              <div class="column is-9">
+                <h3 id="title" class="title"></h3>
 
+                <div class="columns">
+                  <div class="column is-9">
+                    <ul id="ingredients-list"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- right below the food image, food title, etc. it should show the cooking instructions/recipe based on Edamam -->
+            <div class="columns">
+              <p id="instructions"></p>
+            </div>
+           <!-- right below all of that...this can be the spot for the nutritional facts like calories, macros, etc. and maybe a foodgroup like protein/veggies/ but thats beyond our MVP. we need at least the caloric table -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 
+  <!-- this will be the footer at the bottom of the page that his all of our names -->
+  <footer class="container is-fluid" id="footer" style="position:fixed">
+  <!-- this will link all of our group members github links. the target tag opens it a new tab instead of refreshing the page youre on. brayden; I need to overwrite the bulma and fix the names from purple to white -->
+  <div class="columns is-multiline has-text-centered">
+    <div class="column is-one-quarter dev-box">
+      <a href="https://github.com/braydenday" target="_blank">Brayden Day</a>
+    </div>
+    <div class="column is-one-quarter dev-box">
+      <a href="https://github.com/ChadBowler" target="_blank">Chad Bowler</a>
+    </div>
+    <div class="column is-one-quarter dev-box">
+      <a href="https://github.com/jacobhargraves" target="_blank">Jacob Hargraves</a>
+    </div>
+    <div class="column is-one-quarter dev-box">
+      <a href="hhttps://github.com/Mateocassidy" target="_blank">Matthew Cassidy</a>
+    </div>
+  </div>
+</footer>
 
     <script src="assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

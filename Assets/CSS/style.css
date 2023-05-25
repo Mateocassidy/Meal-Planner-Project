@@ -1,46 +1,40 @@
-.hidden {
-    display: none;
-  }
-  
-  /* #measurement,
-  #ingredient {
-    list-style-type: none;
+/* this does nothing at the moment until we link in the edamam API for the searchbox but it should control the search box for meals from changing after we hit the search button .this is built based off our presentation idea. refer to html notes */
+  /* .notification.is-warning {
+    background-color: #19d859;
+    color: rgba(0, 0, 0, 0.7);
   } */
   
+  /* this is the search box for meals */
+  .notification.is-primary {
+    background-color: #19d859;
+  }
+
+  /* this controls the top header of the page */
   .titleTop {
     flex-direction: row;
     margin-left: 5px;
   }
-  
-  /* .notification.is-warning {
-    background-color: #1f1c10;
-    color: rgba(0, 0, 0, 0.7);
-  } */
-  
-  
   #headerTitle {
     color: #19abd8;
     font-size: 35px;
     font-weight: bolder;
   }
-  
   .top.is-dark {
     background-color: #363636;
     color: #fff;
   }
-  
-  .top-body {
+  .top {
     align-items: stretch;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   
-  article, aside, figure, footer, header, hgroup, section {
+  header, footer, section {
     display: block;
-  
   }
   
+  /* browser will calculate the total width and height of box sixing with the universal selector */
   *,
   *::before,
   *::after {
@@ -51,14 +45,14 @@
     display: block;
   }
   
+  /* this controls the whole body of our page */
   body {
     color: #4a4a4a;
     font-size: 2em;
     font-weight: 400;
     line-height: 1.5;
-    
   }
-  
+/* this will flex the header now */
   #topPart {
     display: flex;
   }
@@ -66,4 +60,42 @@
     padding-bottom: 0px;
     padding-top: 10px;
   }
- 
+  /* this controls the whole footer of our page */
+  #footer {
+    background-color: #19abd8;
+    align-items: center;
+    justify-content: space-between;
+    border-top: rgb(0, 0, 0) 10px ridge;
+    color: rgb(0, 0, 0);
+    bottom: 0;
+    width: 100%;
+    color: #000000;
+   
+  }
+  /* this controls the search box displays */
+  .notification {
+      border-radius: 4px;
+      padding: 3rem 1rem 1rem;
+      position: relative;
+  }
+  /* this controls our buttons on the page */
+  button {
+    padding: 0px;
+    border: 0px;
+    display: flex;
+  }
+  
+  /* again , this does nothing at the moment until we link in the edamam API for the searchbox. this is built based off our presentation idea. refer to html notes */
+  /* #back-button {
+    float: right;
+  } */
+  
+  .id {
+    padding: 10px;
+    margin: 10px;
+  }
+/* this keeps our search for meals and previous search labels LARGER no matter what */
+  label {
+    font-size: 30px !important; 
+  }
+  

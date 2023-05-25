@@ -3,7 +3,7 @@
 
 ## Description
 
-I wanted a website to display a bmi calculator with meal options that allow you to hit those calories/macros for FREE! this section will be about what we learned AFTER coding the project.. !
+I wanted a website to display a bmi calculator with meal options that allow you to hit those calories/macros for FREE! I learned you may need to turn off AdBlocker for the API to show up, how to overwrite bulma/bootstrap framework, how to implement bulma columns and sizes, this section will be about what we learned as we code through the project.. !
 
 ## Table of Contents
 
@@ -35,25 +35,25 @@ N/A . This is a web application using an URL link. https://mateocassidy.github.i
 
 A website created to calculate your BMI and find meal plans to make sure youre hitting those calories/macros according to your BMI!
 
-![top-half-webpage](/Assets/Screenshot1.png?raw=true "Top of the webpage")
-![bottom-half-webpage](/Assets/Screenshot1.png?raw=true "Bottom of the webpage")
-![first-api](/Assets/Screenshot1.png?raw=true "Second API")
-![second-api](/Assets/Screenshot1.png?raw=true "First API")
+![home-page](/Assets/Screenshot1.png?raw=true "The Home Page")
+![results-page](/Assets/Screenshot2.png?raw=true "The Search Results Page")
+![first-api](/Assets/Screenshot3.png?raw=true "Second API")
+![second-api](/Assets/Screenshot4.png?raw=true "First API")
 
 
 ## Credits
-* Brayden Day - https://github.com/braydenday created the code for the project
-* Chad Bowler - https://github.com/ChadBowler created the code for the project
-* Jacobs Hargraves - https://github.com/jacobhargraves created the code for the project
-* Matthew Cassidy - https://github.com/Mateocassidy created the code for the project
-* Bulma v0.9.4 - https://bulma.io/ created the CSS
+* Brayden Day - https://github.com/braydenday created HTML and CSS
+* Chad Bowler - https://github.com/ChadBowler 
+* Jacobs Hargraves - https://github.com/jacobhargraves 
+* Matthew Cassidy - https://github.com/Mateocassidy 
+* Bulma v0.9.4 - https://bulma.io/ created the framework
 * Bootstrap v5.3.0 - https://getbootstrap.com/ created the framework
 
 ## Submission
-Date Submitted: 
+Date Submitted: **needs presented by June 5th**
 The URL of the deployed application: (https://mateocassidy.github.io/Meal-Planner-Project/)
 The URL of the GitHub repository that contains your code: (https://github.com/mateocassidy/Meal-Planner-Project)
-The URL of the PowerPoint Presentation Document: 
+The URL of the PowerPoint Presentation Document: **link in the powerpoint URL**
 
 ## License
 
