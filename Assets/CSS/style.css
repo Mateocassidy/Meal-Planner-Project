@@ -3,6 +3,16 @@
     background-color: #19d859;
     color: rgba(0, 0, 0, 0.7);
   } */
+
+  :root {
+    --red: #FF0907;
+    --blue: #049DD9;
+    --purple: #9C02E3;
+    --green: #065B00;
+    --yellow: #F4C903;
+    --orange: #FF6600;
+    --gray: #404040;
+}
   
   /* this is the search box for meals */
   .notification.is-primary {
@@ -98,4 +108,44 @@
   label {
     font-size: 30px !important; 
   }
-  
+
+ 
+
+
+
+
+.header-buttons {
+    color: #FFFAE4;
+    background-color: var(--blue);
+    
+
+
+    margin-top: 3px;
+    padding: 15px 25px;
+    background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
+    box-shadow: inset -3px -3px 9px rgba(255, 255, 255, 0.25), inset 0px 3px 9px rgba(255, 255, 255, 0.3), inset 0px 1px 1px rgba(255, 255, 255, 0.6), inset 0px -8px 36px rgba(0, 0, 0, 0.3), inset 0px 1px 5px rgba(255, 255, 255, 0.6), 2px 19px 31px rgba(0, 0, 0, 0.2);
+    border-radius: 14px !important;
+    font-weight: bold;
+    font-size: 16px;
+    border: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 480px) {
+    .food-image {
+      width: 150px !important;
+      height: 150px !important;
+      padding: 5px !important;
+    }
+
+    .macro-bg {
+        width: 40% !important;
+        font-size: 0.8rem;
+        left: 70% !important;
+    }
+  }
