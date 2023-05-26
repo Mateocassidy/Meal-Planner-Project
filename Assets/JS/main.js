@@ -1,5 +1,53 @@
-var recipeUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=bacon&app_id=7a627b23&app_key=acf228ccc0e17cf14f56e3a37dc64431&diet=balanced&health=alcohol-free&cuisineType=American&mealType=Dinner&dishType=Main%20course&calories=100-1000`
+var appId = '7a627b23';
+var appKey = 'acf228ccc0e17cf14f56e3a37dc64431';
+var foodQuery = 'chicken';
+var dietQuery = ['high-fiber', 'high-protein'];
+var healthQuery = ['crustacean-free', 'dairy-free'];
+var cuisineTypeQuery = ['American', 'Asian', 'British'];
+var mealTypeQuery = ['Dinner', 'Lunch'];
+var dishTypeQuery = ['Main course', 'Salad'];
+var calorieQuery = '100-700';
+var GIQuery = '';
+var excludedQuery = 'mushrooms, cabbage, green beans';
+
+var foodQuery = foodQuery.trim();
+    foodQuery = foodQuery.replaceAll(' ', '%20');
+    foodQuery = foodQuery.replaceAll(',', '%2');
+var dietQueryString = ProcessArrayQuery(dietQuery, 'diet');
+var healthQueryString = ProcessArrayQuery(healthQuery, 'health');
+var cuisineTypeQueryString = ProcessArrayQuery(cuisineTypeQuery, 'cuisineType');
+var mealQueryString = ProcessArrayQuery(mealTypeQuery, 'mealType');
+var dishQueryString = ProcessArrayQuery(dishTypeQuery, 'dishType');
+var calorieQueryString = ProcessStringQuery(calorieQuery, 'calories');
+var GIQueryString = ProcessStringQuery(GIQuery, 'glycemicIndex');
+var excludedQueryString = ProcessStringQuery(excludedQuery, 'excluded');
+
+var recipeUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${foodQuery}&app_id=${appId}&app_key=${appKey}${dietQueryString}${healthQueryString}${cuisineTypeQueryString}${mealQueryString}${dishQueryString}`;
+
+// var recipeUrlExample = `https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=7a627b23&app_key=acf228ccc0e17cf14f56e3a37dc64431&diet=balanced&diet=high-fiber&diet=high-protein&health=crustacean-free&health=dairy-free&cuisineType=American&cuisineType=Asian&cuisineType=British&mealType=Dinner&mealType=Lunch&dishType=Main%20course&dishType=Pancake&dishType=Preps&dishType=Preserve&dishType=Salad&calories=100-700&glycemicIndex=55-70&excluded=mushrooms%2C%20cabbage`;
+
 var listOfRecipes = document.getElementById('accordionPanelsStayOpenExample');
+
+function ProcessArrayQuery(array, query) {
+    let newUrl = '';
+    for (let i = 0; i < array.length; i++) {
+        var element = array[i];
+        element = element.trim();
+        element = element.replaceAll(' ', '%20');
+        newUrl = newUrl.concat('&', query, '=', element);
+        console.log(newUrl);
+        
+    }
+    return newUrl;
+}
+
+function ProcessStringQuery(queryString, query){
+    let newString = queryString.trim();
+    newString = newString.replaceAll(' ', '%20');
+    newString = newString.replaceAll(',', '%2');
+    newString = `&${query}=${newString}`;
+    return newString;
+}
 
 function getNutritionAPI(){
     fetch(recipeUrl)
@@ -56,7 +104,7 @@ function showRecipes(recipes){
                     <p class="card-text"><strong>Fat:</strong> ${fatCount}</p>
                     <p class="card-text"><strong>Servings:</strong> ${servings}</p>
                 </div>
-                <img src="${foodImage}" style="width: 200px; height: 200px; padding: 10px;">
+                <img class="food-image" src="${foodImage}" style="width: 200px; height: 200px; padding: 10px;">
                 <span><small>${ingredientList.innerHTML}</small></span>
                 <a href="${recipeLocationUrl}" target="_blank"><small>${recipeLocationUrl}</small></a>
             </div>
@@ -64,12 +112,8 @@ function showRecipes(recipes){
         `
         console.log(ingredientList);
         listOfRecipes.appendChild(newRecipeItem);
-        
-
     }
 }
-
-
 
 getNutritionAPI();
 
@@ -114,35 +158,3 @@ function convert(num) {
   if (num == 0) return "zero";
   else return convert_millions(num);
 }
-
-// `
-//     <div class="accordion-item">
-//         <h2 class="accordion-header" id="recipeCard${i}">
-//             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-//             ${recipeName}
-//             </button>
-//         </h2>
-//         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-//             <div class="accordion-body">
-//                 <img src="${foodImage}" style="width: 200px; height: 200px;">
-//                 <p class="card-text">Calories: ${calorieCount}</p>
-//                 <span><small>${ingredientList.innerHTML}</small></span>
-//                 <a href="${recipeLocationUrl}"><small>${recipeLocationUrl}</small></a>
-//             </div>
-//         </div>
-//     </div>
-//     </div>
-//     `
-
-//     `<div class="card m-4 border border-info rounded-lg shadow-md" style="width: 30rem;">
-//     <div class="card-header bg-info">
-//         <h5 class="card-title">${recipeName}</h5>
-//     </div>
-//     <div class="card-body" id="recipeCard${i}">
-//         <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-//         <img src="${foodImage}" style="width: 200px; height: 200px;">
-//         <p class="card-text">Calories: ${calorieCount}</p>
-//         <span><small>${ingredientList.innerHTML}</small></span>
-//         <a href="${recipeLocationUrl}"><small>${recipeLocationUrl}</small></a>
-//     </div>
-// </div>`
