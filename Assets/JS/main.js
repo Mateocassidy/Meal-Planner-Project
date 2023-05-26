@@ -98,15 +98,15 @@ function showRecipes(recipes){
         <div id="panelsStayOpen-collapse${accordionNumber}" class="accordion-collapse collapse">
             <div class="accordion-body position-relative">
                 <div class="position-absolute top-10 start-50 macro-bg" style="width: 50%;">
-                    <p class="card-text"><strong>Calories:</strong> ${calorieCount}</p>
-                    <p class="card-text"><strong>Protein:</strong> ${protienCount}</p>
-                    <p class="card-text"><strong>Carbs:</strong> ${carbCount}</p>
-                    <p class="card-text"><strong>Fat:</strong> ${fatCount}</p>
-                    <p class="card-text"><strong>Servings:</strong> ${servings}</p>
+                    <p class="card-text is-size-6"><strong>Calories:</strong> ${calorieCount}</p>
+                    <p class="card-text is-size-6"><strong>Protein:</strong> ${protienCount}</p>
+                    <p class="card-text is-size-6"><strong>Carbs:</strong> ${carbCount}</p>
+                    <p class="card-text is-size-6"><strong>Fat:</strong> ${fatCount}</p>
+                    <p class="card-text is-size-6"><strong>Servings:</strong> ${servings}</p>
                 </div>
                 <img class="food-image" src="${foodImage}" style="width: 200px; height: 200px; padding: 10px;">
-                <span><small>${ingredientList.innerHTML}</small></span>
-                <a href="${recipeLocationUrl}" target="_blank"><small>${recipeLocationUrl}</small></a>
+                <span class="is-size-6"><small>${ingredientList.innerHTML}</small></span>
+                <a class="is-size-6" href="${recipeLocationUrl}" target="_blank"><small>${recipeLocationUrl}</small></a>
             </div>
         </div>
         `

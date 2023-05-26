@@ -3,6 +3,16 @@
     background-color: #19d859;
     color: rgba(0, 0, 0, 0.7);
   } */
+
+  :root {
+    --red: #FF0907;
+    --blue: #049DD9;
+    --purple: #9C02E3;
+    --green: #065B00;
+    --yellow: #F4C903;
+    --orange: #FF6600;
+    --gray: #404040;
+}
   
   /* this is the search box for meals */
   .notification.is-primary {
@@ -99,15 +109,7 @@
     font-size: 30px !important; 
   }
 
-  :root {
-    --red: #FF0907;
-    --blue: #049DD9;
-    --purple: #9C02E3;
-    --green: #065B00;
-    --yellow: #F4C903;
-    --orange: #FF6600;
-    --gray: #404040;
-}
+ 
 
 
 
