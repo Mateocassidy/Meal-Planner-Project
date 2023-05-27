@@ -128,9 +128,10 @@ backBtn.addEventListener("click", handleBackBtnClick);
 // Show the first step
 showCurrentStep();
 
+//variables for Edamam API request
 var appId = '7a627b23';
 var appKey = 'acf228ccc0e17cf14f56e3a37dc64431';
-var foodQuery = 'chicken';
+var foodQuery = 'steak';
 var dietQuery = ['high-fiber', 'high-protein'];
 var healthQuery = ['crustacean-free', 'dairy-free'];
 var cuisineTypeQuery = ['American', 'Asian', 'British'];
@@ -154,19 +155,16 @@ var excludedQueryString = ProcessStringQuery(excludedQuery, 'excluded');
 
 var recipeUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${foodQuery}&app_id=${appId}&app_key=${appKey}${dietQueryString}${healthQueryString}${cuisineTypeQueryString}${mealQueryString}${dishQueryString}`;
 
-// var recipeUrlExample = `https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=7a627b23&app_key=acf228ccc0e17cf14f56e3a37dc64431&diet=balanced&diet=high-fiber&diet=high-protein&health=crustacean-free&health=dairy-free&cuisineType=American&cuisineType=Asian&cuisineType=British&mealType=Dinner&mealType=Lunch&dishType=Main%20course&dishType=Pancake&dishType=Preps&dishType=Preserve&dishType=Salad&calories=100-700&glycemicIndex=55-70&excluded=mushrooms%2C%20cabbage`;
-
-var listOfRecipes = document.getElementById('accordionPanelsStayOpenExample');
-
+var savedSearch = JSON.parse(localStorage.getItem('savedSearch'));
+var listOfRecipes = document.getElementById('list-of-recipes');
+//takes user input and changes the format to be usable in API request
 function ProcessArrayQuery(array, query) {
     let newUrl = '';
     for (let i = 0; i < array.length; i++) {
         var element = array[i];
         element = element.trim();
         element = element.replaceAll(' ', '%20');
-        newUrl = newUrl.concat('&', query, '=', element);
-        console.log(newUrl);
-        
+        newUrl = newUrl.concat('&', query, '=', element);        
     }
     return newUrl;
 }
@@ -178,7 +176,7 @@ function ProcessStringQuery(queryString, query){
     newString = `&${query}=${newString}`;
     return newString;
 }
-
+//Edamam API request
 function getNutritionAPI(){
     fetch(recipeUrl)
         .then(function(response){
@@ -186,16 +184,14 @@ function getNutritionAPI(){
         })
         .then(function(data){
             var recipies = data.hits;
-            console.log(data);
             showRecipes(recipies);
         })
 }  
 
-
+//display recipes to user
 function showRecipes(recipes){
     for (let i = 0; i < recipes.length; i++) {
         const element = recipes[i];
-        console.log(element);
         let recipeName = element.recipe.label;
         let servings = element.recipe.yield;
         let ingredientListData = element.recipe.ingredientLines;
@@ -205,9 +201,7 @@ function showRecipes(recipes){
         let protienCount = `${Math.trunc((element.recipe.totalNutrients.PROCNT.quantity)/servings)}${element.recipe.totalNutrients.PROCNT.unit}`;
         let carbCount = `${Math.trunc((element.recipe.totalNutrients.CHOCDF.quantity)/servings)}${element.recipe.totalNutrients.CHOCDF.unit}`;
         let fatCount = `${Math.trunc((element.recipe.totalNutrients.FAT.quantity)/servings)}${element.recipe.totalNutrients.FAT.unit}`;
-        var ingredientList = document.createElement('ol');
-        var addSign = 'https://img.icons8.com/ios-glyphs/30/add--v1.png'
-        console.log(addSign);
+        var ingredientList = document.createElement('ol');        
 
         for (let j = 0; j < ingredientListData.length; j++) {
             const listEl = ingredientListData[j];
@@ -215,10 +209,10 @@ function showRecipes(recipes){
             newIngredient.textContent = listEl;
             ingredientList.append(newIngredient);
         };
-
+        //set number for each accordion id
         let numberString = convert(i+1);
         let accordionNumber = numberString.charAt(0).toUpperCase() + numberString.slice(1);
-
+        //creation of each accordion item from the API
         var newRecipeItem = document.createElement('div');
         newRecipeItem.classList.add('accordion-item');
         newRecipeItem.innerHTML = `
@@ -230,12 +224,16 @@ function showRecipes(recipes){
         <div id="panelsStayOpen-collapse${accordionNumber}" class="accordion-collapse collapse">
             <div class="accordion-body position-relative">
                 <div class="position-absolute top-10 start-50 macro-bg" style="width: 50%;">
-                    <p class="card-text is-size-6"><strong>Calories:</strong> ${calorieCount}</p>
-                    <p class="card-text is-size-6"><strong>Protein:</strong> ${protienCount}</p>
-                    <p class="card-text is-size-6"><strong>Carbs:</strong> ${carbCount}</p>
-                    <p class="card-text is-size-6"><strong>Fat:</strong> ${fatCount}</p>
-                    <p class="card-text is-size-6"><strong>Servings:</strong> ${servings}</p>
-                    <button class="card-text is-size-6"><img class="" src="${addSign}" style="width: 25px; height: 25px;"></button><p class="card-text is-size-6">Click here to add meal</p>
+                    <p class="card-text is-size-6 m-2"><strong>Calories:</strong> ${calorieCount}</p>
+                    <p class="card-text is-size-6 m-2"><strong>Protein:</strong> ${protienCount}</p>
+                    <p class="card-text is-size-6 m-2"><strong>Carbs:</strong> ${carbCount}</p>
+                    <p class="card-text is-size-6 m-2"><strong>Fat:</strong> ${fatCount}</p>
+                    <p class="card-text is-size-6 m-2"><strong>Servings:</strong> ${servings}</p>
+                    <p class="card-text is-size-6 m-2">
+                      <button class="card-text is-size-6 add-item">
+                        <i class="fa-solid fa-circle-plus fa-lg fa-pull-left icon"></i>
+                      Click to add meal</button>
+                    </p>
                 </div>
                 <img class="food-image" src="${foodImage}" style="width: 200px; height: 200px; padding: 10px;">
                 <span class="is-size-6"><small>${ingredientList.innerHTML}</small></span>
@@ -243,14 +241,50 @@ function showRecipes(recipes){
             </div>
         </div>
         `
-        console.log(ingredientList);
         listOfRecipes.appendChild(newRecipeItem);
     }
+}
+//adding recipes to storage
+
+listOfRecipes.addEventListener('click', function(event){
+  event.stopImmediatePropagation();
+  
+  if(event.target.classList.contains('add-item')){
+    let element = event.target;
+    let closest = element.closest('.accordion-item');
+   
+    if (closest){
+      saveSearchHistory(closest); 
+    }
+  }
+})
+//the savedSearch variable is declared globally and used in this function
+function saveSearchHistory(history) {
+  let title = history.firstElementChild.textContent;
+  if (savedSearch!==null) {
+    for(let i=0;i<savedSearch.length;i++){
+      if (savedSearch[i].name == title) {
+        savedSearch.splice(i,1);
+      }
+    }
+    savedSearch.unshift({
+      name: title,
+      content: history.innerHTML
+    });
+    
+  } else {
+    savedSearch = [];
+    savedSearch.unshift({
+      name: title,
+      content: history.innerHTML
+    });
+  }
+  localStorage.setItem('savedSearch', JSON.stringify(savedSearch));
 }
 
 getNutritionAPI();
 
-//code pulled from Stack Overflow to add the numbers into the Bootstrap Accordion correctly
+//code pulled from Stack Overflow to add the numbers into the Bootstrap Accordion in written form instead of numerical
 var ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
 var tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
 var teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
