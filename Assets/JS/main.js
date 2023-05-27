@@ -76,6 +76,8 @@ function showRecipes(recipes){
         let carbCount = `${Math.trunc((element.recipe.totalNutrients.CHOCDF.quantity)/servings)}${element.recipe.totalNutrients.CHOCDF.unit}`;
         let fatCount = `${Math.trunc((element.recipe.totalNutrients.FAT.quantity)/servings)}${element.recipe.totalNutrients.FAT.unit}`;
         var ingredientList = document.createElement('ol');
+        var addSign = 'https://img.icons8.com/ios-glyphs/30/add--v1.png'
+        console.log(addSign);
 
         for (let j = 0; j < ingredientListData.length; j++) {
             const listEl = ingredientListData[j];
@@ -103,6 +105,7 @@ function showRecipes(recipes){
                     <p class="card-text is-size-6"><strong>Carbs:</strong> ${carbCount}</p>
                     <p class="card-text is-size-6"><strong>Fat:</strong> ${fatCount}</p>
                     <p class="card-text is-size-6"><strong>Servings:</strong> ${servings}</p>
+                    <button class="card-text is-size-6"><img class="" src="${addSign}" style="width: 25px; height: 25px;"></button><p class="card-text is-size-6">Click here to add meal</p>
                 </div>
                 <img class="food-image" src="${foodImage}" style="width: 200px; height: 200px; padding: 10px;">
                 <span class="is-size-6"><small>${ingredientList.innerHTML}</small></span>
