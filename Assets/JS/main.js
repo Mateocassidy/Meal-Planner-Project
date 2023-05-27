@@ -126,7 +126,8 @@ const backBtn = document.getElementById("modalBackBtn");
 backBtn.addEventListener("click", handleBackBtnClick);
 
 // Show the first step
-showCurrentStep();
+const modalBtn = document.getElementById("modalBtn");
+modalBtn.addEventListener('click', showCurrentStep);
 
 var appId = '7a627b23';
 var appKey = 'acf228ccc0e17cf14f56e3a37dc64431';
