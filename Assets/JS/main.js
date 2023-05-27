@@ -11,27 +11,33 @@
         title: "Goals",
         content: `
             <h2>What are your goals?</h2>
-            <div class="btn-group-vertical">
-                <button class="btn btn-primary">Lose Weight</button>
-                <button class="btn btn-primary">Maintain Weight</button>
-                <button class="btn btn-primary">Gain Weight</button>
-            </div>
+            <div class="input-group mb-3">
+                <select class="form-select input-group-sm" id="goalInput">
+                  <option selected>Select Goal</option>
+                  <option value="1">Lose Weight</option>
+                  <option value="2">Maintain Weight</option>
+                  <option value="3">Gain Weight</option>
+                </select>
+          </div>
         `
     },
     {
         title: "Age",
         content: `
             <h2>What is your age?</h2>
-            <input type="number" class="form-control">
+            <input id="ageInput" type="number" class="form-control">
         `
     },
     {
         title: "Gender",
         content: `
             <h2>What is your gender?</h2>
-            <div class="btn-group-vertical">
-                <button class="btn btn-primary">Male</button>
-                <button class="btn btn-primary">Female</button>
+            <div class="input-group mb-3">
+                <select class="form-select input-group-sm" id="genderInput">
+                  <option selected>Select Gender</option>
+                  <option value="1">Male</option>
+                  <option value="2">Female</option>
+                </select>
             </div>
         `
     },
@@ -39,28 +45,31 @@
         title: "Weight",
         content: `
             <h2>What is your current weight?</h2>
-            <input type="number" class="form-control">
+            <input id="weightInput" type="number" class="form-control">
         `
     },
     {
         title: "Height",
         content: `
             <h2>What is your current height?</h2>
-            <input type="number" class="form-control">
+            <input id="weightInput" type="number" class="form-control">
         `
     },
     {
         title: "Activity Level",
         content: `
             <h2>What is your current activity level?</h2>
-            <div class="btn-group-vertical">
-                <button class="btn btn-primary">Sedentary: little or no exercise</button>
-                <button class="btn btn-primary">Exercise 1-3 times/week</button>
-                <button class="btn btn-primary">Exercise 4-5 times/week</button>
-                <button class="btn btn-primary">Daily exercise or intense exercise 3-4 times/week</button>
-                <button class="btn btn-primary">Intense exercise 6-7 times/week</button>
-                <button class="btn btn-primary">Very intense exercise daily, or physical job</button>
-            </div>
+            <div class="input-group mb-3">
+                <select class="form-select input-group-sm" id="activityLevelInput">
+                  <option selected>Select Activity Level</option>
+                  <option value="1">Sedentary: little or no exercise</option>
+                  <option value="2">Exercise 1-3 times/week</option>
+                  <option value="3">Exercise 4-5 times/week</option>
+                  <option value="4">Daily exercise or intense exercise 3-4 times/week</option>
+                  <option value="5">Intense exercise 6-7 times/week</option>
+                  <option value="6">Very intense exercise daily, or physical job</option>
+                </select>
+          </div>
         `
     }
 ];
