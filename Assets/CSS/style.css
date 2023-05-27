@@ -13,6 +13,9 @@
     --orange: #FF6600;
     --gray: #404040;
 }
+
+
+
   
   /* this is the search box for meals */
   .notification.is-primary {
@@ -109,9 +112,27 @@
     font-size: 30px !important; 
   }
 
- 
+
+.add-item {
+    background-color: white;
+}
+
+.add-item:hover {
+    color: #47D600;
+}
 
 
+
+/* These styles are required to make icons render reliably */
+.icon {
+    position: relative;
+}
+.icon::before {
+display: inline-block;
+text-rendering: auto;
+-webkit-font-smoothing: antialiased;
+position: absolute;
+}
 
 
 .header-buttons {
