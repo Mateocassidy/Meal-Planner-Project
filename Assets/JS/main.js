@@ -102,8 +102,7 @@ function handleNextBtnClick() {
         // Reached the last step
         // Perform any necessary actions or submit the form
         console.log("Reached the last step. Submitting the form...");
-
-        // Hide the modal
+       // Hide the modal
         const modal = bootstrap.Modal.getInstance(document.getElementById("modalContainer"));
         modal.hide();
     } else {
@@ -127,12 +126,35 @@ function handleBackBtnClick() {
     }
 }
 
+function submitForm() {
+    var goal = document.getElementById("goalInput").value;
+    var gender = document.getElementById("genderInput").value;
+    var activityLevel = document.getElementById("activityLevelInput").value;
+    var age = document.getElementById("ageInput").value;
+    var weight = document.getElementById("weightInput").value;
+    var height = document.getElementById("heightInput").value;
+
+    console.log("Goal:", goal);
+    console.log("Gender:", gender);
+    console.log("Activity Level:", activityLevel);
+    console.log("Age:", age);
+    console.log("Weight:", weight);
+    console.log("Height:", height);
+}
+
+var modalSubmit = document.getElementById("modalContainer");
+
+modalSubmit.addEventListener("shown.bs.modal", function() {
+  submitForm();
+}); 
+
 // Add event listeners to the "Next" and "Back" buttons
 const nextBtn = document.getElementById("modalNextBtn");
 nextBtn.addEventListener("click", handleNextBtnClick);
 
 const backBtn = document.getElementById("modalBackBtn");
 backBtn.addEventListener("click", handleBackBtnClick);
+
 
 // Show the first step
 const modalBtn = document.getElementById("modalBtn");
