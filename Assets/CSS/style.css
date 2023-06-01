@@ -42,6 +42,10 @@
     flex-direction: column;
     justify-content: space-between;
   }
+
+  .dark-mode-bg {
+    background-color: #343840;
+  }
   
   header, footer, section {
     display: block;
