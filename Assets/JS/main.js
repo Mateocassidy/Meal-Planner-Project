@@ -211,9 +211,7 @@ var excludedQueryString = ProcessStringQuery(excludedQuery, 'excluded');
 recipeUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${foodQuery}&app_id=${appId}&app_key=${appKey}${dietQueryString}${healthQueryString}${cuisineTypeQueryString}${mealQueryString}${dishQueryString}${calorieQueryString}${excludedQueryString}`;
 getNutritionAPI();
 };
-recipeUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${foodQuery}&app_id=${appId}&app_key=${appKey}${dietQueryString}${healthQueryString}${cuisineTypeQueryString}${mealQueryString}${dishQueryString}${calorieQueryString}${excludedQueryString}`;
-getNutritionAPI();
-};
+
 
 var savedSearch = JSON.parse(localStorage.getItem('savedSearch'));
 var currentSessionMeals = JSON.parse(sessionStorage.getItem('sessionMeals'));
@@ -266,7 +264,6 @@ function getNutritionAPI(){
       });
 };
 
-//display recipes to user
 //display recipes to user
 function showRecipes(recipes){
 try {
