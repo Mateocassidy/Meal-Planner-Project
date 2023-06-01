@@ -40,7 +40,19 @@ function submitForm() {
             console.log(data.data.goals[goal].calory);
         })
     }
-}
+};
+
+function mealsModal() {
+  const mealQueryModal = new bootstrap.Modal(document.getElementById("mealModal"));
+  mealQueryModal.show();
+  };
+  
+  var mealSearchButton = document.getElementById('meal-search-button');
+  mealSearchButton.addEventListener('click', function(event){
+  event.stopPropagation();
+  
+  mealsModal();
+  });
 
 var mealQuerySubmit = document.getElementById('meal-query-submit');
 mealQuerySubmit.addEventListener('click', function(event){
