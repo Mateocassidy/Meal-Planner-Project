@@ -9,13 +9,20 @@
     --blue: #049DD9;
     --purple: #9C02E3;
     --green: #065B00;
-    --yellow: #F4C903;
+    --yellow: hsl(49, 98%, 48%, 0.9);
+    --lightblue: hsl(197, 96%, 43%, 0.9);
     --orange: #FF6600;
     --gray: #404040;
 }
 
+/* .main{
+  background-color: #343840;
+} */
 
 
+body:not(.modal-open){
+  padding-right: 0px !important;
+}
   
   /* this is the search box for meals */
   .notification.is-primary {
@@ -31,9 +38,73 @@
     color: #19abd8;
     font-size: 35px;
     font-weight: bolder;
+    text-shadow: 2px 1px white;
   }
+
+.light-mode-text {
+  color: #343840;
+  text-shadow: 0px 0px white;
+}
+
+.light-mode-bg {
+  background-color: whitesmoke;
+}
+
+.dark-mode-text {
+  color: white;
+  text-shadow: 2px 1px #343840;
+}
+
+.dark-mode-bg {
+  background-color: #343840;
+}
+
+.main-bg { 
+  background: 
+    url(../Images/chicken_arugula_salad.png) left top no-repeat,
+    url(../Images/turkey_sausage_breakfast.png) right top no-repeat,
+    url(../Images/kebab_dinner.png) center top no-repeat,
+    url(../Images/crepe_brunch.png) left center no-repeat,
+    url(../Images/pork_taco.png) center center no-repeat,
+    url(../Images/tekkadon.png) right center no-repeat,
+    url(../Images/eggs_and_toast.png) left bottom no-repeat,
+    url(../Images/chicken_enchilada.png) center bottom no-repeat,
+    url(../Images/chicken_greenbeans.png) right bottom no-repeat
+    ;
+  background-size: 33.3%, 33.3%;
+  background-color: #343840; 
+}
+
+.modal-bg {
+  background: 
+  url(../Images/chicken_arugula_salad.png) left top no-repeat,
+  
+  url(../Images/pork_taco.png) center center no-repeat,
+
+  url(../Images/chicken_greenbeans.png) right bottom no-repeat
+  ;
+background-size: 33.3%, 33.3%;
+background-color: #343840;
+}
+
+.lose {
+  background-color: var(--yellow) !important;
+}
+
+.lose:hover, .maintain:hover, .gain:hover {
+  background-color: var(--gray) !important;
+}
+
+.maintain {
+  background-color: var(--green) !important;
+}
+.gain {
+  background-color: var(--red) !important;
+}
+
   .top.is-dark {
-    background-color: #363636;
+    background-image: linear-gradient(var(--yellow) 60%, var(--lightblue));
+    /* background-color: var(--yellow); */
     color: #fff;
   }
   .top {
@@ -41,10 +112,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-
-  .dark-mode-bg {
-    background-color: #343840;
   }
   
   header, footer, section {
@@ -60,6 +127,7 @@
   
   section {
     display: block;
+
   }
   
   /* this controls the whole body of our page */
@@ -68,6 +136,12 @@
     font-size: 2em;
     font-weight: 400;
     line-height: 1.5;
+    min-height: 100dvh;
+  }
+
+  #main-section {
+    position: relative;
+    min-height: 87dvh;
   }
 /* this will flex the header now */
   #topPart {
@@ -88,6 +162,10 @@
     width: 100%;
     color: #000000;
    
+  }
+
+  a:hover {
+    color: var(--yellow)
   }
   /* this controls the search box displays */
   .notification {
@@ -118,14 +196,25 @@
 
 
 .add-item {
-    background-color: white;
+    background-color: hsl(120, 100%, 50%, 0.0);
 }
 
 .add-item:hover {
     color: #47D600;
 }
 
+.remove-item {
+  background-color: hsl(120, 100%, 50%, 0.0);
+}
 
+.remove-item:hover {
+  color: var(--red);
+}
+
+/* .section {
+  border: 3px solid var(--green);
+  border-radius: 5px;
+} */
 
 /* These styles are required to make icons render reliably */
 .icon {
@@ -138,17 +227,21 @@ text-rendering: auto;
 position: absolute;
 }
 
+#user-plan img {
+  width: 150px !important;
+  height: 150px !important;
+}
+
 
 .header-buttons {
-    color: #FFFAE4;
-    background-color: var(--blue);
-    
-
-
+    color: #343840;
+    background-color: var(--yellow);
     margin-top: 3px;
     padding: 15px 25px;
+    /* background-image: linear-gradient(to bottom right, #FFFAE4 1%, #F4C903 15%, #F4C903 65%, #343840); */
+
     background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
-    box-shadow: inset -3px -3px 9px rgba(255, 255, 255, 0.25), inset 0px 3px 9px rgba(255, 255, 255, 0.3), inset 0px 1px 1px rgba(255, 255, 255, 0.6), inset 0px -8px 36px rgba(0, 0, 0, 0.3), inset 0px 1px 5px rgba(255, 255, 255, 0.6), 2px 19px 31px rgba(0, 0, 0, 0.2);
+    box-shadow: inset -3px -3px 6px rgba(255, 255, 255, 0.25), inset 0px 3px 6px rgba(255, 255, 255, 0.3), inset 0px 1px 1px rgba(255, 255, 255, 0.6), inset 0px -8px 26px rgba(0, 0, 0, 0.3), inset 0px 1px 5px rgba(255, 255, 255, 0.6), 2px 14px 21px rgba(0, 0, 0, 0.2);
     border-radius: 14px !important;
     font-weight: bold;
     font-size: 16px;
@@ -156,8 +249,41 @@ position: absolute;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-
     cursor: pointer;
+}
+
+.textarea-text {
+  font-weight: 900;
+  text-align: center;
+  padding: 5px;
+  font-size: 1.2rem;
+}
+
+.button-forward {
+  color: #ffffff;
+  background-color: #049DD9;
+  
+}
+
+.current-meal-item {
+  position: relative;
+}
+
+.current-meal-item:hover::after {
+  position: absolute;
+  top:0;
+  left:0;
+  text-align: center;
+  padding-top: 13px;
+  content: 'Click to view item';
+  background-color: var(--green);
+  height: 100%;
+  width: 100%;
+  border-radius: 14px;
+  color: white;
+  text-shadow: 2px 1px #343840;
+  background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
+    box-shadow: inset -3px -3px 6px rgba(255, 255, 255, 0.25), inset 0px 3px 6px rgba(255, 255, 255, 0.3), inset 0px 1px 1px rgba(255, 255, 255, 0.6), inset 0px -8px 26px rgba(0, 0, 0, 0.3), inset 0px 1px 5px rgba(255, 255, 255, 0.6), 2px 14px 21px rgba(0, 0, 0, 0.2);
 }
 
 
