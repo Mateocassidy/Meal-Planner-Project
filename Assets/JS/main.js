@@ -40,7 +40,19 @@ function submitForm() {
             console.log(data.data.goals[goal].calory);
         })
     }
-}
+};
+
+function mealsModal() {
+  const mealQueryModal = new bootstrap.Modal(document.getElementById("mealModal"));
+  mealQueryModal.show();
+  };
+  
+  var mealSearchButton = document.getElementById('meal-search-button');
+  mealSearchButton.addEventListener('click', function(event){
+  event.stopPropagation();
+  
+  mealsModal();
+  });
 
 var mealQuerySubmit = document.getElementById('meal-query-submit');
 mealQuerySubmit.addEventListener('click', function(event){
@@ -53,15 +65,6 @@ processQuery();
 //variables for Edamam API request
 var appId = '7a627b23';
 var appKey = 'acf228ccc0e17cf14f56e3a37dc64431';
-var foodQuery = '';
-var dietQuery = [];
-var healthQuery = [];
-var cuisineTypeQuery = [];
-var mealTypeQuery = [];
-var dishTypeQuery = [];
-var calorieQuery = '';
-var calorieQuery1 = '';
-var calorieQuery2 = '';
 var foodQuery = '';
 var dietQuery = [];
 var healthQuery = [];
