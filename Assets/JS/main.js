@@ -62,7 +62,6 @@ processQuery();
 
 
 //variables for Edamam API request
-//variables for Edamam API request
 var appId = '7a627b23';
 var appKey = 'acf228ccc0e17cf14f56e3a37dc64431';
 var foodQuery = '';
@@ -79,41 +78,38 @@ var excludedQuery = '';
 var recipeUrl;
 var dietQueryString
 
-
-
 function processQuery() {
-foodQuery = document.getElementById('food-query').value;
-dietQuery = document.getElementById('diet-query');
-healthQuery = document.getElementById('health-query');
-cuisineTypeQuery = document.getElementById('cuisine-query');
-mealTypeQuery = document.getElementById('meal-type-query');
-dishTypeQuery = document.getElementById('dish-query');
-calorieQuery1 = document.getElementById('calorie-query-1').value;
-calorieQuery2 = document.getElementById('calorie-query-2').value;
-excludedQuery = document.getElementById('excluded-query').value;
-if (parseInt(calorieQuery1) > parseInt(calorieQuery2)) {
-  console.log('oops');
-  let temp = calorieQuery2;
-  calorieQuery2 = calorieQuery1;
-  calorieQuery1 = temp;    
+    foodQuery = document.getElementById('food-query').value;
+    dietQuery = document.getElementById('diet-query');
+    healthQuery = document.getElementById('health-query');
+    cuisineTypeQuery = document.getElementById('cuisine-query');
+    mealTypeQuery = document.getElementById('meal-type-query');
+    dishTypeQuery = document.getElementById('dish-query');
+    calorieQuery1 = document.getElementById('calorie-query-1').value;
+    calorieQuery2 = document.getElementById('calorie-query-2').value;
+    excludedQuery = document.getElementById('excluded-query').value;
+    if (parseInt(calorieQuery1) > parseInt(calorieQuery2)) {
+      console.log('oops');
+      let temp = calorieQuery2;
+      calorieQuery2 = calorieQuery1;
+      calorieQuery1 = temp;    
+    };
+
+    var calorieQueryString = `&calories=${calorieQuery1}-${calorieQuery2}`;
+    var foodQuery = foodQuery.trim();
+      foodQuery = foodQuery.replaceAll(' ', '%20');
+      foodQuery = foodQuery.replaceAll(',', '%2');
+    var dietQueryString = ProcessQueryInput(dietQuery, 'diet');
+    var healthQueryString = ProcessQueryInput(healthQuery, 'health');
+    var cuisineTypeQueryString = ProcessQueryInput(cuisineTypeQuery, 'cuisineType');
+    var mealQueryString = ProcessQueryInput(mealTypeQuery, 'mealType');
+    var dishQueryString = ProcessQueryInput(dishTypeQuery, 'dishType');
+    // var GIQueryString = ProcessStringQuery(GIQuery, 'glycemicIndex');
+    var excludedQueryString = ProcessStringQuery(excludedQuery, 'excluded');
+
+    recipeUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${foodQuery}&app_id=${appId}&app_key=${appKey}${dietQueryString}${healthQueryString}${cuisineTypeQueryString}${mealQueryString}${dishQueryString}${calorieQueryString}${excludedQueryString}`;
+    getNutritionAPI();
 };
-
-var calorieQueryString = `&calories=${calorieQuery1}-${calorieQuery2}`;
-var foodQuery = foodQuery.trim();
-  foodQuery = foodQuery.replaceAll(' ', '%20');
-  foodQuery = foodQuery.replaceAll(',', '%2');
-var dietQueryString = ProcessQueryInput(dietQuery, 'diet');
-var healthQueryString = ProcessQueryInput(healthQuery, 'health');
-var cuisineTypeQueryString = ProcessQueryInput(cuisineTypeQuery, 'cuisineType');
-var mealQueryString = ProcessQueryInput(mealTypeQuery, 'mealType');
-var dishQueryString = ProcessQueryInput(dishTypeQuery, 'dishType');
-// var GIQueryString = ProcessStringQuery(GIQuery, 'glycemicIndex');
-var excludedQueryString = ProcessStringQuery(excludedQuery, 'excluded');
-
-recipeUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${foodQuery}&app_id=${appId}&app_key=${appKey}${dietQueryString}${healthQueryString}${cuisineTypeQueryString}${mealQueryString}${dishQueryString}${calorieQueryString}${excludedQueryString}`;
-getNutritionAPI();
-};
-
 
 var savedSearch = JSON.parse(localStorage.getItem('savedSearch'));
 var currentSessionMeals = JSON.parse(sessionStorage.getItem('sessionMeals'));
@@ -126,20 +122,20 @@ var totalCalorieCount = 0;
 totalCalories.innerText = totalCalorieCount;
 //takes user input and changes the format to be usable in API request
 function ProcessQueryInput(queryElement, query) {
-let newUrl = '';
+    let newUrl = '';
 
-for (let i = 0; i < queryElement.length; i++) {
-    var element = queryElement[i];
-    let elementString ='';
-    
-    if (element.selected && element.innerText!=='--none--') {
-      elementString = element.innerText;
-      newUrl = newUrl.replaceAll(' ', '%20');
-      newUrl = newUrl.replaceAll(',', '%2');
-      newUrl = newUrl.concat('&', query, '=', elementString);
+    for (let i = 0; i < queryElement.length; i++) {
+        var element = queryElement[i];
+        let elementString ='';
+        
+        if (element.selected && element.innerText!=='--none--') {
+          elementString = element.innerText;
+          newUrl = newUrl.replaceAll(' ', '%20');
+          newUrl = newUrl.replaceAll(',', '%2');
+          newUrl = newUrl.concat('&', query, '=', elementString);
+        };
     };
-};
-return newUrl;
+    return newUrl;
 };
 
 function ProcessStringQuery(queryString, query){
@@ -233,138 +229,138 @@ try {
 }
 //adding recipes to storage
 listOfRecipes.addEventListener('click', function(event){
-event.stopImmediatePropagation();
+    event.stopImmediatePropagation();
 
-if(event.target.classList.contains('add-item')){
-  let element = event.target;
-  let closest = element.closest('.accordion-item');
- 
-  if (closest){
-    saveSearchHistory(closest);
-    addCurrentMeal(closest);
-  };
-};
+    if(event.target.classList.contains('add-item')){
+      let element = event.target;
+      let closest = element.closest('.accordion-item');
+    
+      if (closest){
+        saveSearchHistory(closest);
+        addCurrentMeal(closest);
+      };
+    };
 });
 //the savedSearch variable is declared globally and used in this function
 function saveSearchHistory(history) {
-console.log(history);
-let calorieText = history.children[1].children[0].children[0].children[0].innerText;
-let proteinText = history.children[1].children[0].children[0].children[1].innerText.substr(9);
-let carbsText = history.children[1].children[0].children[0].children[2].innerText.substr(7);
-let fatText = history.children[1].children[0].children[0].children[3].innerText.substr(5);
-let servingsText = history.children[1].children[0].children[0].children[4].innerText.substr(10);
-let image = history.children[1].children[0].children[1].src;
-let ingredientText = history.children[1].children[0].children[2].innerHTML;
-let linkText = history.children[1].children[0].children[3].innerHTML;
-let calorieNum = Number.parseInt(calorieText.substr(10));
-let title = history.firstElementChild.textContent;
-if (savedSearch!==null) {
-  for(let i=0;i<savedSearch.length;i++){
-    if (savedSearch[i].name == title) {
-      savedSearch.splice(i,1);
+    console.log(history);
+    let calorieText = history.children[1].children[0].children[0].children[0].innerText;
+    let proteinText = history.children[1].children[0].children[0].children[1].innerText.substr(9);
+    let carbsText = history.children[1].children[0].children[0].children[2].innerText.substr(7);
+    let fatText = history.children[1].children[0].children[0].children[3].innerText.substr(5);
+    let servingsText = history.children[1].children[0].children[0].children[4].innerText.substr(10);
+    let image = history.children[1].children[0].children[1].src;
+    let ingredientText = history.children[1].children[0].children[2].innerHTML;
+    let linkText = history.children[1].children[0].children[3].innerHTML;
+    let calorieNum = Number.parseInt(calorieText.substr(10));
+    let title = history.firstElementChild.textContent;
+    if (savedSearch!==null) {
+      for(let i=0;i<savedSearch.length;i++){
+        if (savedSearch[i].name == title) {
+          savedSearch.splice(i,1);
+        };
+      };
+      savedSearch.unshift({
+        name: title,
+        content: history.innerHTML,
+        calories: calorieNum,
+        protein: proteinText,
+        carbs: carbsText,
+        fat: fatText,
+        servings: servingsText,
+        image: image,
+        ingredients: ingredientText,
+        link: linkText
+      });
+      
+    } else {
+      savedSearch = [];
+      savedSearch.unshift({
+        name: title,
+        content: history.innerHTML,
+        calories: calorieNum,
+        protein: proteinText,
+        carbs: carbsText,
+        fat: fatText,
+        servings: servingsText,
+        image: image,
+        ingredients: ingredientText,
+        link: linkText
+      });
     };
-  };
-  savedSearch.unshift({
-    name: title,
-    content: history.innerHTML,
-    calories: calorieNum,
-    protein: proteinText,
-    carbs: carbsText,
-    fat: fatText,
-    servings: servingsText,
-    image: image,
-    ingredients: ingredientText,
-    link: linkText
-  });
-  
-} else {
-  savedSearch = [];
-  savedSearch.unshift({
-    name: title,
-    content: history.innerHTML,
-    calories: calorieNum,
-    protein: proteinText,
-    carbs: carbsText,
-    fat: fatText,
-    servings: servingsText,
-    image: image,
-    ingredients: ingredientText,
-    link: linkText
-  });
-};
-localStorage.setItem('savedSearch', JSON.stringify(savedSearch));
+    localStorage.setItem('savedSearch', JSON.stringify(savedSearch));
 };
 //add selection to side
 function addCurrentMeal(current) {
-let title = current.firstElementChild.textContent;
-let calorieText = current.children[1].children[0].children[0].children[0].innerText;
-let calorieNum = Number.parseInt(calorieText.substr(10));
+    let title = current.firstElementChild.textContent;
+    let calorieText = current.children[1].children[0].children[0].children[0].innerText;
+    let calorieNum = Number.parseInt(calorieText.substr(10));
 
-if (currentSessionMeals!==null) {
-  
-  for (let i = 0; i < currentSessionMeals.length; i++) {
-    if (currentSessionMeals[i].name == title) {
-      currentSessionMeals.splice(i,1);
-    } else {
+    if (currentSessionMeals!==null) {
       
-    };
-  };
-  currentSessionMeals.unshift({
-    name: title,
-    content: current.innerHTML,
-    calories: calorieNum
-  });
-  
-} else {
-  // totalCalorieCount = totalCalorieCount + calorieNum;
-  // totalCalories.innerText = totalCalorieCount;
-  currentSessionMeals = [];
-  currentSessionMeals.unshift({
-    name: title,
-    content: current.innerHTML,
-    calories: calorieNum
-  });
-}
-sessionStorage.setItem('sessionMeals', JSON.stringify(currentSessionMeals));
-displayCurrentMeals();
-}
+      for (let i = 0; i < currentSessionMeals.length; i++) {
+        if (currentSessionMeals[i].name == title) {
+          currentSessionMeals.splice(i,1);
+        } else {
+          
+        };
+      };
+      currentSessionMeals.unshift({
+        name: title,
+        content: current.innerHTML,
+        calories: calorieNum
+      });
+      
+    } else {
+      // totalCalorieCount = totalCalorieCount + calorieNum;
+      // totalCalories.innerText = totalCalorieCount;
+      currentSessionMeals = [];
+      currentSessionMeals.unshift({
+        name: title,
+        content: current.innerHTML,
+        calories: calorieNum
+      });
+    }
+    sessionStorage.setItem('sessionMeals', JSON.stringify(currentSessionMeals));
+    displayCurrentMeals();
+};
 //display side container and update calorie count
 function displayCurrentMeals() {
-try {
-    while (listOfMeals.hasChildNodes) {
-        listOfMeals.removeChild(listOfMeals.firstChild);
+    try {
+        while (listOfMeals.hasChildNodes) {
+            listOfMeals.removeChild(listOfMeals.firstChild);
+        };
+    } catch (error) {
+      
     };
-} catch (error) {
-  
-};
 
-totalCalorieCount = 0;
-var currentSessionMeals = JSON.parse(sessionStorage.getItem('sessionMeals'));
+    totalCalorieCount = 0;
+    var currentSessionMeals = JSON.parse(sessionStorage.getItem('sessionMeals'));
 
-if (currentSessionMeals.length === 0) {
-  totalCalories.innerText = 0;
-}
-for (let i = 0; i < currentSessionMeals.length; i++) {
-  var element = currentSessionMeals[i];
-  var currentMealItem = document.createElement('li');
-      currentMealItem.classList.add('list-group-item', 'list-group-item-action', 'header-buttons', 'is-12', 'col-12', 'current-meal-item');
-      currentMealItem.innerHTML = element.name;
-  let calorieNum = Number.parseInt(element.calories);
-      totalCalorieCount = totalCalorieCount + calorieNum;
-      totalCalories.innerText = totalCalorieCount;
-  listOfMeals.appendChild(currentMealItem);
-};
-if (parseInt(totalCalorieCount)>=(parseInt(calorieGoal)+500)) {
-  
-  totalCalories.style.backgroundColor = "#FF0907";
-} else if (parseInt(totalCalorieCount)<=(parseInt(calorieGoal)-500)){
-  totalCalories.style.backgroundColor = '#F4C903';
-  
-} else {
-  
-  totalCalories.style.backgroundColor = '#065B00';
-  totalCalories.style.color = "white";
-}
+    if (currentSessionMeals.length === 0) {
+      totalCalories.innerText = 0;
+    }
+    for (let i = 0; i < currentSessionMeals.length; i++) {
+      var element = currentSessionMeals[i];
+      var currentMealItem = document.createElement('li');
+          currentMealItem.classList.add('list-group-item', 'list-group-item-action', 'header-buttons', 'is-12', 'col-12', 'current-meal-item');
+          currentMealItem.innerHTML = element.name;
+      let calorieNum = Number.parseInt(element.calories);
+          totalCalorieCount = totalCalorieCount + calorieNum;
+          totalCalories.innerText = totalCalorieCount;
+      listOfMeals.appendChild(currentMealItem);
+    };
+    if (parseInt(totalCalorieCount)>=(parseInt(calorieGoal)+500)) {
+      
+      totalCalories.style.backgroundColor = "#FF0907";
+    } else if (parseInt(totalCalorieCount)<=(parseInt(calorieGoal)-500)){
+      totalCalories.style.backgroundColor = '#F4C903';
+      
+    } else {
+      
+      totalCalories.style.backgroundColor = '#065B00';
+      totalCalories.style.color = "white";
+    };
 };
 //remove items from side
 listOfMeals.addEventListener('click', function(event){
@@ -376,83 +372,83 @@ if (event.target.tagName == 'LI') {
 });
 
 function viewCurrentItem(viewItem) {
-for (let i = 0; i < savedSearch.length; i++) {
-  var element = savedSearch[i];
-  if (element.name.trim() == viewItem.innerText.trim()) {
-    displayCurrentItem(element);
-  } else {
-  };
-};
+    for (let i = 0; i < savedSearch.length; i++) {
+      var element = savedSearch[i];
+      if (element.name.trim() == viewItem.innerText.trim()) {
+        displayCurrentItem(element);
+      } else {
+      };
+    };
 };
 
 function displayCurrentItem(current) {
-let itemName = current.name;
-let calorieCount = current.calories;
-let protienCount = current.protein;
-let carbCount = current.carbs;
-let fatCount = current.fat;
-let servings = current.servings;
-let foodImage = current.image;
-let ingredientList = current.ingredients;
-let recipeLocationUrl = current.link;
-let currentItemTitle = document.createElement('h3');
-currentItemTitle.classList.add('is-size-6');
-currentItemTitle.style.fontWeight='700';
-currentItemTitle.style.color='white';
-currentItemTitle.style.textShadow='2px 2px black';
-currentItemTitle.innerHTML = itemName;
-let currentItemCard = document.createElement('div');
-currentItemCard.classList.add('card', 'position-relative', 'current-item');
-currentItemCard.innerHTML = `  
-        <div class="position-absolute top-10 start-50 macro-bg" style="width: 50%; opacity: 0.9;">
-            <p class="card-text is-size-7 m-2"><strong>Calories:</strong> ${calorieCount}</p>
-            <p class="card-text is-size-7 m-2"><strong>Protein:</strong> ${protienCount}</p>
-            <p class="card-text is-size-7 m-2"><strong>Carbs:</strong> ${carbCount}</p>
-            <p class="card-text is-size-7 m-2"><strong>Fat:</strong> ${fatCount}</p>
-            <p class="card-text is-size-7 m-2"><strong>Servings:</strong> ${servings}</p>
-            <p class="card-text is-size-7 m-2">
-              <button class="card-text is-size-7 remove-item" style="background-color: hsl(120, 100%, 50%, 0.0)">
-                <i class="fa-solid fa-circle-minus fa-lg fa-pull-left icon"></i>
-              Click to remove from list</button>
-            </p>
-        </div>
-        <img class="food-image" src="${foodImage}" style="width: 150px; height: 150px; padding: 10px;">
-        <span class="is-size-6 m-2"><small>${ingredientList}</small></span>
-        <a class="is-size-6" href="${recipeLocationUrl}" target="_blank"><small>${recipeLocationUrl}</small></a>    
-`
-try {
-  while (currentItemView.hasChildNodes) {
-    currentItemView.removeChild(currentItemView.firstChild);
-  };
-  
-} catch (error) {
-  
-};
-currentItemView.appendChild(currentItemTitle);
-currentItemView.appendChild(currentItemCard);
-};
-
-function removeCurrentItem(removeItem) {
-
-for (let i = 0; i < currentSessionMeals.length; i++) {
-  var element = currentSessionMeals[i];
-
-  if (element.name.trim() == removeItem.innerText.trim()) {
-    currentSessionMeals.splice(i, 1);
-    
+    let itemName = current.name;
+    let calorieCount = current.calories;
+    let protienCount = current.protein;
+    let carbCount = current.carbs;
+    let fatCount = current.fat;
+    let servings = current.servings;
+    let foodImage = current.image;
+    let ingredientList = current.ingredients;
+    let recipeLocationUrl = current.link;
+    let currentItemTitle = document.createElement('h3');
+    currentItemTitle.classList.add('is-size-6');
+    currentItemTitle.style.fontWeight='700';
+    currentItemTitle.style.color='white';
+    currentItemTitle.style.textShadow='2px 2px black';
+    currentItemTitle.innerHTML = itemName;
+    let currentItemCard = document.createElement('div');
+    currentItemCard.classList.add('card', 'position-relative', 'current-item');
+    currentItemCard.innerHTML = `  
+            <div class="position-absolute top-10 start-50 macro-bg" style="width: 50%; opacity: 0.9;">
+                <p class="card-text is-size-7 m-2"><strong>Calories:</strong> ${calorieCount}</p>
+                <p class="card-text is-size-7 m-2"><strong>Protein:</strong> ${protienCount}</p>
+                <p class="card-text is-size-7 m-2"><strong>Carbs:</strong> ${carbCount}</p>
+                <p class="card-text is-size-7 m-2"><strong>Fat:</strong> ${fatCount}</p>
+                <p class="card-text is-size-7 m-2"><strong>Servings:</strong> ${servings}</p>
+                <p class="card-text is-size-7 m-2">
+                  <button class="card-text is-size-7 remove-item" style="background-color: hsl(120, 100%, 50%, 0.0)">
+                    <i class="fa-solid fa-circle-minus fa-lg fa-pull-left icon"></i>
+                  Click to remove from list</button>
+                </p>
+            </div>
+            <img class="food-image" src="${foodImage}" style="width: 150px; height: 150px; padding: 10px;">
+            <span class="is-size-6 m-2"><small>${ingredientList}</small></span>
+            <a class="is-size-6" href="${recipeLocationUrl}" target="_blank"><small>${recipeLocationUrl}</small></a>    
+    `
     try {
       while (currentItemView.hasChildNodes) {
         currentItemView.removeChild(currentItemView.firstChild);
       };
+      
     } catch (error) {
       
     };
-    
-  } else{
-  };
+    currentItemView.appendChild(currentItemTitle);
+    currentItemView.appendChild(currentItemCard);
 };
-sessionStorage.setItem('sessionMeals', JSON.stringify(currentSessionMeals));
-displayCurrentMeals();
+
+function removeCurrentItem(removeItem) {
+
+    for (let i = 0; i < currentSessionMeals.length; i++) {
+      var element = currentSessionMeals[i];
+
+      if (element.name.trim() == removeItem.innerText.trim()) {
+        currentSessionMeals.splice(i, 1);
+        
+        try {
+          while (currentItemView.hasChildNodes) {
+            currentItemView.removeChild(currentItemView.firstChild);
+          };
+        } catch (error) {
+          
+        };
+        
+      } else{
+      };
+    };
+    sessionStorage.setItem('sessionMeals', JSON.stringify(currentSessionMeals));
+    displayCurrentMeals();
 };
 
 try {
