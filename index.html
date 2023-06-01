@@ -25,7 +25,7 @@
                     <h1 id="headerTitle">Eazy Mealz</h1>
                     <h4 class="subtitle is-4" id="subHeader">The Free Meal Planner</h4>
                     <button type="button" id="modalBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalContainer">
-                        Calculate Calories
+                        Let's Get Started!
                     </button>
                 </div>
             </div>
@@ -39,16 +39,59 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="modalTitle"></h1>
+            <h1 class="modal-title fs-5" id="modalTitle">Let's get started!</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body" id="modalBody">
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" id="modalBackBtn" data-bs-dismiss="modal">Back</button>
-            <button type="button" class="btn btn-primary" id="modalNextBtn">Next</button>
-          </div>
+            <div class="modal-body" id="modalBody">
+                    <div class="input-group mb-3">
+                      <label class="input-group-text" for="goalInput"
+                        >Goals</label>
+                      <select class="form-select input-group-sm" id="goalInput">
+                        <option selected>Select Goal</option>
+                        <option value="1">Lose Weight</option>
+                        <option value="2">Maintain Weight</option>
+                        <option value="3">Gain Weight</option>
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="genderInput"
+                          >Gender</label>
+                        <select class="form-select input-group-sm" id="genderInput">
+                          <option selected>Select Gender</option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="activityLevelInput"
+                          >Activity Level</label>
+                        <select class="form-select input-group-sm" id="activityLevelInput">
+                          <option selected>Select Activity Level</option>
+                          <option value="level_1">Sedentary: little or no exercise</option>
+                          <option value="level_2">Exercise 1-3 times/week</option>
+                          <option value="level_3">Exercise 4-5 times/week</option>
+                          <option value="level_4">Daily exercise or intense exercise 3-4 times/week</option>
+                          <option value="level_5">Intense exercise 6-7 times/week</option>
+                          <option value="level_6">Very intense exercise daily, or physical job</option>
+                        </select>
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Enter Age (years)</span>
+                        <input id="ageInput" type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Enter Weight (kg)</span>
+                        <input id="weightInput" type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Enter Height (cm)</span>
+                         <input id="heightInput" type="number" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="modalSubmit">Submit</button>
+                </div>
+            </div>
         </div>
       </div>
     </div>
