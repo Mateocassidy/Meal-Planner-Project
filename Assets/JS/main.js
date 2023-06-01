@@ -1,4 +1,8 @@
+// Event listener for modal submit button
+var modalSubmitEl = document.getElementById("modalSubmit");
+modalSubmitEl.addEventListener('click', submitForm);
 
+// Retrieves user input and calculates from fitness calc API
 function submitForm() {
     var goal = document.getElementById("goalInput").value;
     var gender = document.getElementById("genderInput").value;
@@ -13,6 +17,29 @@ function submitForm() {
     console.log("Age:", age);
     console.log("Weight:", weight);
     console.log("Height:", height);
+
+    calorieData();
+
+    // takes user input and calculates calorie needs
+    function calorieData() {
+        const url = 'https://fitness-calculator.p.rapidapi.com/dailycalorie?age=' + age + '&gender=' + gender + '&height=' + height + '&weight=' + weight + '&activitylevel=' + activityLevel;
+        const options = {
+        	method: 'GET',
+        	headers: {
+        		'X-RapidAPI-Key': '02c9618479msh9539c929eb0c626p1ac9d9jsncd81691d510d',
+        		'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com'
+        	}
+        };
+        fetch(url, options)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            console.log(data.data.BMR);
+            console.log(data.data.goals[goal].calory);
+        })
+    }
 }
 
 //variables for Edamam API request
