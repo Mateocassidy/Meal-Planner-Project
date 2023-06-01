@@ -260,27 +260,53 @@ listOfRecipes.addEventListener('click', function(event){
 })
 //the savedSearch variable is declared globally and used in this function
 function saveSearchHistory(history) {
+  console.log(history);
+  let calorieText = history.children[1].children[0].children[0].children[0].innerText;
+  let proteinText = history.children[1].children[0].children[0].children[1].innerText.substr(9);
+  let carbsText = history.children[1].children[0].children[0].children[2].innerText.substr(7);
+  let fatText = history.children[1].children[0].children[0].children[3].innerText.substr(5);
+  let servingsText = history.children[1].children[0].children[0].children[4].innerText.substr(10);
+  let image = history.children[1].children[0].children[1].src;
+  let ingredientText = history.children[1].children[0].children[2].innerHTML;
+  let linkText = history.children[1].children[0].children[3].innerHTML;
+  let calorieNum = Number.parseInt(calorieText.substr(10));
   let title = history.firstElementChild.textContent;
   if (savedSearch!==null) {
     for(let i=0;i<savedSearch.length;i++){
       if (savedSearch[i].name == title) {
         savedSearch.splice(i,1);
-      }
-    }
+      };
+    };
     savedSearch.unshift({
       name: title,
-      content: history.innerHTML
+      content: history.innerHTML,
+      calories: calorieNum,
+      protein: proteinText,
+      carbs: carbsText,
+      fat: fatText,
+      servings: servingsText,
+      image: image,
+      ingredients: ingredientText,
+      link: linkText
     });
     
   } else {
     savedSearch = [];
     savedSearch.unshift({
       name: title,
-      content: history.innerHTML
+      content: history.innerHTML,
+      calories: calorieNum,
+      protein: proteinText,
+      carbs: carbsText,
+      fat: fatText,
+      servings: servingsText,
+      image: image,
+      ingredients: ingredientText,
+      link: linkText
     });
-  }
+  };
   localStorage.setItem('savedSearch', JSON.stringify(savedSearch));
-}
+};
 
 getNutritionAPI();
 
