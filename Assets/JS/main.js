@@ -1,147 +1,46 @@
- // Modal steps
- const modalSteps = [
-  {
-      title: "Let's get started!",
-      content: `
-          <p>First, we'll do some quick calculations</p>
-      `
-  },
-  {
-      title: "Goals",
-      content: `
-          <h2>What are your goals?</h2>
-          <div class="container">
-              <button class="btn button-forward lose">Lose Weight</button>
-              <button class="btn button-forward maintain">Maintain Weight</button>
-              <button class="btn button-forward gain">Gain Weight</button>
-          </div>
-      `
-  },
-  {
-      title: "Age",
-      content: `
-          <h2>What is your age?</h2>
-          <input type="number" class="form-control">
-      `
-  },
-  {
-      title: "Gender",
-      content: `
-          <h2>What is your gender?</h2>
-          <div class="container">
-              <button class="btn button-forward">Male</button>
-              <button class="btn button-forward">Female</button>
-          </div>
-      `
-  },
-  {
-      title: "Weight",
-      content: `
-          <h2>What is your current weight?</h2>
-          <input type="number" class="form-control">
-      `
-  },
-  {
-      title: "Height",
-      content: `
-          <h2>What is your current height?</h2>
-          <input type="number" class="form-control">
-      `
-  },
-  {
-      title: "Activity Level",
-      content: `
-          <h2>What is your current activity level?</h2>
-          <div class="container row justify-content-center">
-              <button class="btn button-forward col-10 m-2">Sedentary: little or no exercise</button>
-              <button class="btn button-forward col-10 m-2">Exercise 1-3 times/week</button>
-              <button class="btn button-forward col-10 m-2">Exercise 4-5 times/week</button>
-              <button class="btn button-forward col-10 m-2">Daily exercise or intense exercise 3-4 times/week</button>
-              <button class="btn button-forward col-10 m-2">Intense exercise 6-7 times/week</button>
-              <button class="btn button-forward col-10 m-2">Very intense exercise daily, or physical job</button>
-          </div>
-      `
-  }
-];
+// Event listener for modal submit button
+var modalSubmitEl = document.getElementById("modalSubmit");
+modalSubmitEl.addEventListener('click', submitForm);
 
-var currentStep = 0;
+// Retrieves user input and calculates from fitness calc API
+function submitForm() {
+    var goal = document.getElementById("goalInput").value;
+    var gender = document.getElementById("genderInput").value;
+    var activityLevel = document.getElementById("activityLevelInput").value;
+    var age = document.getElementById("ageInput").value;
+    var weight = document.getElementById("weightInput").value;
+    var height = document.getElementById("heightInput").value;
 
-// Function to show the modal with the given title and content
-function showModal(title, content) {
-  const modalTitle = document.getElementById("modalTitle");
-  const modalBody = document.getElementById("modalBody");
+    console.log("Goal:", goal);
+    console.log("Gender:", gender);
+    console.log("Activity Level:", activityLevel);
+    console.log("Age:", age);
+    console.log("Weight:", weight);
+    console.log("Height:", height);
 
-  modalTitle.textContent = title;
-  modalBody.innerHTML = content;
+    calorieData();
 
-  // Show the modal
-  const modal = new bootstrap.Modal(document.getElementById("modalContainer"));
-  modal.show();
+    // takes user input and calculates calorie needs
+    function calorieData() {
+        const url = 'https://fitness-calculator.p.rapidapi.com/dailycalorie?age=' + age + '&gender=' + gender + '&height=' + height + '&weight=' + weight + '&activitylevel=' + activityLevel;
+        const options = {
+        	method: 'GET',
+        	headers: {
+        		'X-RapidAPI-Key': '02c9618479msh9539c929eb0c626p1ac9d9jsncd81691d510d',
+        		'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com'
+        	}
+        };
+        fetch(url, options)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            console.log(data.data.BMR);
+            console.log(data.data.goals[goal].calory);
+        })
+    }
 }
-
-// Function to show the current step
-function showCurrentStep() {
-  const step = modalSteps[currentStep];
-  showModal(step.title, step.content);
-}
-
-// Function to handle the "Next" button click
-function handleNextBtnClick() {
-  currentStep++;
-  if (currentStep >= modalSteps.length) {
-      // Reached the last step
-      // Perform any necessary actions or submit the form
-      // Hide the modal
-      const modal = bootstrap.Modal.getInstance(document.getElementById("modalContainer"));
-      modal.hide();
-  } else {
-      showCurrentStep();
-  }
-}
-
-// Function to handle the "Back" button click
-function handleBackBtnClick() {
-  currentStep--;
-  if (currentStep < 0) {
-      // Reached the first step
-      // Perform any necessary actions or go back to the previous page
-      console.log("Reached the first step. Going back...");
-
-      // Hide the modal
-      const modal = bootstrap.Modal.getInstance(document.getElementById("modalContainer"));
-      modal.hide();
-  } else {
-      showCurrentStep();
-  }
-}
-
-// Add event listeners to the "Next" and "Back" buttons
-const nextBtn = document.getElementById("modalNextBtn");
-nextBtn.addEventListener("click", handleNextBtnClick);
-
-const backBtn = document.getElementById("modalBackBtn");
-backBtn.addEventListener("click", handleBackBtnClick);
-
-function mealsModal() {
-const mealQueryModal = new bootstrap.Modal(document.getElementById("mealModal"));
-mealQueryModal.show();
-}
-
-var mealSearchButton = document.getElementById('meal-search-button');
-mealSearchButton.addEventListener('click', function(event){
-event.stopPropagation();
-
-mealsModal();
-});
-
-var getReadyButton = document.getElementById('get-ready-button');
-getReadyButton.addEventListener('click', function(event){
-event.stopPropagation();
-
-currentStep = 0;
-// Show the first step
-showCurrentStep();
-});
 
 var mealQuerySubmit = document.getElementById('meal-query-submit');
 mealQuerySubmit.addEventListener('click', function(event){

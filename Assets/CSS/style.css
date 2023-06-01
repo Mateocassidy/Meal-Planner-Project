@@ -164,6 +164,10 @@ background-color: #343840;
    
   }
 
+  element.style {
+    position: static;
+}
+
   a:hover {
     color: var(--yellow)
   }

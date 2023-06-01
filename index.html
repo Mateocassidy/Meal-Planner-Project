@@ -42,13 +42,55 @@
             <h1 class="modal-title fs-5" id="modalTitle"></h1>
             <button type="button" class="dark-mode-bg" style="color: #FF0907;" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-square-xmark"></i></button>
           </div>
-          <div class="modal-body col" id="modalBody">
-            
-          </div>
-          <div class="modal-footer col">
-            <button type="button" class="btn btn-secondary" id="modalBackBtn" data-bs-dismiss="modal">Back</button>
-            <button type="button" class="btn button-forward" id="modalNextBtn">Next</button>
-          </div>
+            <div class="modal-body col" id="modalBody">
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="goalInput"
+                    >Goals</label>
+                  <select class="form-select input-group-sm" id="goalInput">
+                    <option selected>Select Goal</option>
+                    <option value="Weight loss">Lose Weight (-1lb/week)</option>
+                    <option value="maintain weight">Maintain Weight</option>
+                    <option value="Weight gain">Gain Weight (+1lb/week)</option>
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="genderInput"
+                      >Gender</label>
+                    <select class="form-select input-group-sm" id="genderInput">
+                      <option selected>Select Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="activityLevelInput"
+                      >Activity Level</label>
+                    <select class="form-select input-group-sm" id="activityLevelInput">
+                      <option selected>Select Activity Level</option>
+                      <option value="level_1">Sedentary: little or no exercise</option>
+                      <option value="level_2">Exercise 1-3 times/week</option>
+                      <option value="level_3">Exercise 4-5 times/week</option>
+                      <option value="level_4">Daily exercise or intense exercise 3-4 times/week</option>
+                      <option value="level_5">Intense exercise 6-7 times/week</option>
+                      <option value="level_6">Very intense exercise daily, or physical job</option>
+                    </select>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Enter Age (years)</span>
+                    <input id="ageInput" type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Enter Weight (kg)</span>
+                    <input id="weightInput" type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Enter Height (cm)</span>
+                     <input id="heightInput" type="number" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="modalSubmit" data-bs-dismiss="modal">Submit</button>
+            </div>
         </div>
       </div>
     </div>
@@ -211,12 +253,12 @@
           <div id="search-form" class="box is-four-fifths is-size-3 is-centered" style="color: #ffffff; background-color: hsl(197, 96%, 43%, 0.9); box-shadow: 3px 3px black; display: flex;">
             <label class="label" style="color: #ffffff; text-shadow: 3px 3px #404040;">Let's Get Started!</label>
             
-            <button class="button is-large" data-bs-toggle="modal" data-bs-target="#modalContainer" id="get-ready-button" style="color: #ffffff; background-color: hsl(197, 96%, 43%, 0.0); border: 0;"><i class="fa-solid fa-user fa-2xl" style="color: #ffffff; text-shadow: 3px 3px #404040;"></i></button>
+            <button class="button is-large" data-bs-toggle="modal" data-bs-target="#modalContainer" id="get-ready-button" style="border-color: black; background-color: green; margin-left: 2em;"><i class="fa-solid fa-user fa-2xl" style="color: #ffffff; text-shadow: 3px 3px #404040;"></i></button>
           </div>
           <div id="search-form" class="box is-four-fifths is-size-3 is-centered" style="color: #ffffff; background-color: hsl(197, 96%, 43%, 0.9); box-shadow: 3px 3px black; display: flex;">
             <label class="label" style="color: #ffffff; text-shadow: 3px 3px #404040;">Search For Meals</label>
             
-            <button class="button is-large" id="meal-search-button" data-bs-target="#mealModal" style="color: #ffffff; background-color: hsl(197, 96%, 43%, 0.0); border: 0;"><i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #ffffff; text-shadow: 3px 3px #404040;"></i></button>
+            <button class="button is-large" id="meal-search-button" data-bs-target="#mealModal" style="border-color: black; background-color: green; margin-left: 2em;"><i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #ffffff; text-shadow: 3px 3px #404040;"></i></button>
           </div>
           <div id="current-item-container" class="box is-four-fifths is-size-3 is-centered" style="background-color: hsl(197, 96%, 43%, 0.9);">
             
@@ -250,20 +292,20 @@
     </div>
   </div>
          <!-- this will be the footer at the bottom of the page that his all of our names -->
-  <footer class="container is-fluid" id="footer" style="position:fixed; font-family: 'Carter One', cursive;">
-    <!-- this will link all of our group members github links. the target tag opens it a new tab instead of refreshing the page youre on. brayden; I need to overwrite the bulma and fix the names from purple to white -->
+  <footer class="container is-fluid" id="footer" style="position:relative; font-family: 'Carter One', cursive;">
+    <!-- this will link all of our group members github links. the target tag opens it a new tab instead of refreshing the page youre on. -->
     <div class="columns is-multiline has-text-centered">
       <div class="column is-one-quarter dev-box">
-        <a href="https://github.com/braydenday" target="_blank">Brayden Day <i class="fa-brands fa-github"></i></a>
+        <a href="https://github.com/braydenday" target="_blank" style="color: white;">Brayden Day <i class="fa-brands fa-github"></i></a>
       </div>
       <div class="column is-one-quarter dev-box">
-        <a href="https://github.com/ChadBowler" target="_blank">Chad Bowler <i class="fa-brands fa-github"></i></a>
+        <a href="https://github.com/ChadBowler" target="_blank" style="color: white;">Chad Bowler <i class="fa-brands fa-github"></i></a>
       </div>
       <div class="column is-one-quarter dev-box">
-        <a href="https://github.com/jacobhargraves" target="_blank">Jacob Hargraves <i class="fa-brands fa-github"></i></a>
+        <a href="https://github.com/jacobhargraves" target="_blank" style="color: white;">Jacob Hargraves <i class="fa-brands fa-github"></i></a>
       </div>
       <div class="column is-one-quarter dev-box">
-        <a href="https://github.com/Mateocassidy" target="_blank">Matthew Cassidy <i class="fa-brands fa-github"></i></a>
+        <a href="https://github.com/Mateocassidy" target="_blank" style="color: white;">Matthew Cassidy <i class="fa-brands fa-github"></i></a>
       </div>
     </div>
   </footer>
