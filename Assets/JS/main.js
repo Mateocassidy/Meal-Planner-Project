@@ -151,8 +151,18 @@ processQuery();
 
 
 //variables for Edamam API request
+//variables for Edamam API request
 var appId = '7a627b23';
 var appKey = 'acf228ccc0e17cf14f56e3a37dc64431';
+var foodQuery = '';
+var dietQuery = [];
+var healthQuery = [];
+var cuisineTypeQuery = [];
+var mealTypeQuery = [];
+var dishTypeQuery = [];
+var calorieQuery = '';
+var calorieQuery1 = '';
+var calorieQuery2 = '';
 var foodQuery = '';
 var dietQuery = [];
 var healthQuery = [];
@@ -198,6 +208,9 @@ var dishQueryString = ProcessQueryInput(dishTypeQuery, 'dishType');
 // var GIQueryString = ProcessStringQuery(GIQuery, 'glycemicIndex');
 var excludedQueryString = ProcessStringQuery(excludedQuery, 'excluded');
 
+recipeUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${foodQuery}&app_id=${appId}&app_key=${appKey}${dietQueryString}${healthQueryString}${cuisineTypeQueryString}${mealQueryString}${dishQueryString}${calorieQueryString}${excludedQueryString}`;
+getNutritionAPI();
+};
 recipeUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${foodQuery}&app_id=${appId}&app_key=${appKey}${dietQueryString}${healthQueryString}${cuisineTypeQueryString}${mealQueryString}${dishQueryString}${calorieQueryString}${excludedQueryString}`;
 getNutritionAPI();
 };
@@ -253,6 +266,7 @@ function getNutritionAPI(){
       });
 };
 
+//display recipes to user
 //display recipes to user
 function showRecipes(recipes){
 try {
