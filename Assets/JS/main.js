@@ -125,57 +125,124 @@ nextBtn.addEventListener("click", handleNextBtnClick);
 const backBtn = document.getElementById("modalBackBtn");
 backBtn.addEventListener("click", handleBackBtnClick);
 
-// Show the first step
-showCurrentStep();
+function mealsModal() {
+  const mealQueryModal = new bootstrap.Modal(document.getElementById("mealModal"));
+  mealQueryModal.show();
+}
+
+var mealSearchButton = document.getElementById('meal-search-button');
+mealSearchButton.addEventListener('click', function(event){
+  event.stopPropagation();
+ 
+  mealsModal();
+});
+
+var getReadyButton = document.getElementById('get-ready-button');
+getReadyButton.addEventListener('click', function(event){
+  event.stopPropagation();
+  
+  currentStep = 0;
+  // Show the first step
+  showCurrentStep();
+});
+
+var mealQuerySubmit = document.getElementById('meal-query-submit');
+mealQuerySubmit.addEventListener('click', function(event){
+  event.preventDefault();
+  processQuery();
+});
 
 //variables for Edamam API request
 var appId = '7a627b23';
 var appKey = 'acf228ccc0e17cf14f56e3a37dc64431';
-var foodQuery = 'steak';
-var dietQuery = ['high-fiber', 'high-protein'];
-var healthQuery = ['crustacean-free', 'dairy-free'];
-var cuisineTypeQuery = ['American', 'Asian', 'British'];
-var mealTypeQuery = ['Dinner', 'Lunch'];
-var dishTypeQuery = ['Main course', 'Salad'];
-var calorieQuery = '100-700';
+var foodQuery = '';
+var dietQuery = [];
+var healthQuery = [];
+var cuisineTypeQuery = [];
+var mealTypeQuery = [];
+var dishTypeQuery = [];
+var calorieQuery = '';
+var calorieQuery1 = '';
+var calorieQuery2 = '';
 var GIQuery = '';
-var excludedQuery = 'mushrooms, cabbage, green beans';
+var excludedQuery = '';
+var recipeUrl;
+var dietQueryString
 
-var foodQuery = foodQuery.trim();
+
+
+function processQuery() {
+  foodQuery = document.getElementById('food-query').value;
+  dietQuery = document.getElementById('diet-query');
+  healthQuery = document.getElementById('health-query');
+  cuisineTypeQuery = document.getElementById('cuisine-query');
+  mealTypeQuery = document.getElementById('meal-type-query');
+  dishTypeQuery = document.getElementById('dish-query');
+  calorieQuery1 = document.getElementById('calorie-query-1').value;
+  calorieQuery2 = document.getElementById('calorie-query-2').value;
+  excludedQuery = document.getElementById('excluded-query').value;
+  if (parseInt(calorieQuery1) > parseInt(calorieQuery2)) {
+    console.log('oops');
+    let temp = calorieQuery2;
+    calorieQuery2 = calorieQuery1;
+    calorieQuery1 = temp;    
+  };
+
+  var calorieQueryString = `&calories=${calorieQuery1}-${calorieQuery2}`;
+  var foodQuery = foodQuery.trim();
     foodQuery = foodQuery.replaceAll(' ', '%20');
     foodQuery = foodQuery.replaceAll(',', '%2');
-var dietQueryString = ProcessArrayQuery(dietQuery, 'diet');
-var healthQueryString = ProcessArrayQuery(healthQuery, 'health');
-var cuisineTypeQueryString = ProcessArrayQuery(cuisineTypeQuery, 'cuisineType');
-var mealQueryString = ProcessArrayQuery(mealTypeQuery, 'mealType');
-var dishQueryString = ProcessArrayQuery(dishTypeQuery, 'dishType');
-var calorieQueryString = ProcessStringQuery(calorieQuery, 'calories');
-var GIQueryString = ProcessStringQuery(GIQuery, 'glycemicIndex');
+var dietQueryString = ProcessQueryInput(dietQuery, 'diet');
+var healthQueryString = ProcessQueryInput(healthQuery, 'health');
+var cuisineTypeQueryString = ProcessQueryInput(cuisineTypeQuery, 'cuisineType');
+var mealQueryString = ProcessQueryInput(mealTypeQuery, 'mealType');
+var dishQueryString = ProcessQueryInput(dishTypeQuery, 'dishType');
+// var GIQueryString = ProcessStringQuery(GIQuery, 'glycemicIndex');
 var excludedQueryString = ProcessStringQuery(excludedQuery, 'excluded');
 
-var recipeUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${foodQuery}&app_id=${appId}&app_key=${appKey}${dietQueryString}${healthQueryString}${cuisineTypeQueryString}${mealQueryString}${dishQueryString}`;
+recipeUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${foodQuery}&app_id=${appId}&app_key=${appKey}${dietQueryString}${healthQueryString}${cuisineTypeQueryString}${mealQueryString}${dishQueryString}${calorieQueryString}${excludedQueryString}`;
+getNutritionAPI();
+};
 
 var savedSearch = JSON.parse(localStorage.getItem('savedSearch'));
+var currentSessionMeals = JSON.parse(sessionStorage.getItem('sessionMeals'));
 var listOfRecipes = document.getElementById('list-of-recipes');
+var listOfMeals = document.getElementById('list-of-meals');
+var currentItemView = document.getElementById('current-item-container');
+var totalCalories = document.getElementById('total-calories');
+var calorieGoal = document.getElementById('calorie-goal').innerHTML;
+var totalCalorieCount = 0;
+totalCalories.innerText = totalCalorieCount;
 //takes user input and changes the format to be usable in API request
-function ProcessArrayQuery(array, query) {
-    let newUrl = '';
-    for (let i = 0; i < array.length; i++) {
-        var element = array[i];
-        element = element.trim();
-        element = element.replaceAll(' ', '%20');
-        newUrl = newUrl.concat('&', query, '=', element);        
-    }
-    return newUrl;
-}
+function ProcessQueryInput(queryElement, query) {
+  let newUrl = '';
+  
+  for (let i = 0; i < queryElement.length; i++) {
+      var element = queryElement[i];
+      let elementString ='';
+      
+      if (element.selected && element.innerText!=='--none--') {
+        elementString = element.innerText;
+        newUrl = newUrl.replaceAll(' ', '%20');
+        newUrl = newUrl.replaceAll(',', '%2');
+        newUrl = newUrl.concat('&', query, '=', elementString);
+      };
+  };
+  return newUrl;
+};
 
 function ProcessStringQuery(queryString, query){
-    let newString = queryString.trim();
-    newString = newString.replaceAll(' ', '%20');
-    newString = newString.replaceAll(',', '%2');
-    newString = `&${query}=${newString}`;
-    return newString;
-}
+    if (queryString!=='') {
+      let newString = queryString.trim();
+      newString = newString.replaceAll(' ', '%20');
+      newString = newString.replaceAll(',', '%2');
+      newString = `&${query}=${newString}`;
+      return newString;
+    } else {
+      return queryString;
+    };
+    
+};
 //Edamam API request
 function getNutritionAPI(){
     fetch(recipeUrl)
