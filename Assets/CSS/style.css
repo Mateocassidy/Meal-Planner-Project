@@ -286,6 +286,44 @@ position: absolute;
     box-shadow: inset -3px -3px 6px rgba(255, 255, 255, 0.25), inset 0px 3px 6px rgba(255, 255, 255, 0.3), inset 0px 1px 1px rgba(255, 255, 255, 0.6), inset 0px -8px 26px rgba(0, 0, 0, 0.3), inset 0px 1px 5px rgba(255, 255, 255, 0.6), 2px 14px 21px rgba(0, 0, 0, 0.2);
 }
 
+.search-box {
+  color: #ffffff;
+  background-color: hsl(197, 96%, 43%, 0.9);
+  box-shadow: 3px 3px black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.macro-bg {
+  font-size: 1rem;
+}
+
+.macro-small {
+  font-size: 0.8rem;
+}
+
+
+@media screen and (max-width: 1200px) {
+   
+  .macro-bg {
+     font-size: 0.7rem;
+  }
+
+  .macro-small {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+   
+  .macro-bg {
+      font-size: 1rem;
+  }
+  .macro-small {
+    font-size: 0.8rem;
+  }
+}
+
 
 @media screen and (max-width: 480px) {
     .food-image {
@@ -294,9 +332,7 @@ position: absolute;
       padding: 5px !important;
     }
 
-    .macro-bg {
-        width: 40% !important;
+    .macro-bg {       
         font-size: 0.8rem;
-        left: 70% !important;
     }
   }
