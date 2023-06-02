@@ -37,10 +37,13 @@ function submitForm() {
         .then(function (data) {
             console.log(data);
             console.log(data.data.BMR);
-            console.log(data.data.goals[goal].calory);
+            console.log(data.data.goals[goal]);
 
-            var calorieGoalApi = Math.trunc(data.data.goals[goal].calory);
-            
+            if (goal === 'maintain weight') {
+                var calorieGoalApi = Math.trunc(data.data.goals[goal])
+            } else {
+                var calorieGoalApi = Math.trunc(data.data.goals[goal].calory);
+            }
             var calorieGoalEl = document.getElementById('calorie-goal');
             calorieGoalEl.textContent = calorieGoalApi;
             localStorage.setItem('calorieNeeds', calorieGoalApi);
