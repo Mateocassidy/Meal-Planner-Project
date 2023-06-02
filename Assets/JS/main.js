@@ -38,6 +38,12 @@ function submitForm() {
             console.log(data);
             console.log(data.data.BMR);
             console.log(data.data.goals[goal].calory);
+
+            var calorieGoalApi = Math.trunc(data.data.goals[goal].calory);
+            
+            var calorieGoalEl = document.getElementById('calorie-goal');
+            calorieGoalEl.textContent = calorieGoalApi;
+            localStorage.setItem('calorieNeeds', calorieGoalApi);
         })
     }
 };
