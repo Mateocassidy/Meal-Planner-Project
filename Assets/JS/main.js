@@ -111,7 +111,7 @@ function processQuery() {
     var calorieQueryString = `&calories=${calorieQuery1}-${calorieQuery2}`;
     var foodQuery = foodQuery.trim();
       foodQuery = foodQuery.replaceAll(' ', '%20');
-      foodQuery = foodQuery.replaceAll(',', '');
+      foodQuery = foodQuery.replaceAll(',', '%2');
     var dietQueryString = ProcessQueryInput(dietQuery, 'diet');
     var healthQueryString = ProcessQueryInput(healthQuery, 'health');
     var cuisineTypeQueryString = ProcessQueryInput(cuisineTypeQuery, 'cuisineType');
@@ -406,8 +406,8 @@ function displayCurrentItem(current) {
     let currentItemTitle = document.createElement('h3');
     currentItemTitle.classList.add('is-size-6');
     currentItemTitle.style.fontWeight='700';
-    currentItemTitle.style.color='white';
-    currentItemTitle.style.textShadow='2px 2px black';
+    // currentItemTitle.style.color='white';
+    // currentItemTitle.style.textShadow='2px 2px white';
     currentItemTitle.innerHTML = itemName;
     let currentItemCard = document.createElement('div');
     currentItemCard.classList.add('card', 'position-relative', 'current-item');
@@ -518,7 +518,7 @@ function convert_tens(num) {
 if (num < 10) return ones[num];
 else if (num >= 10 && num < 20) return teens[num - 10];
 else {
-  return tens[Math.floor(num / 10)] + " " + ones[num % 10];
+  return tens[Math.floor(num / 10)] + "" + ones[num % 10];
 }
 }
 

@@ -30,6 +30,17 @@ body:not(.modal-open){
   }
 
   /* this controls the top header of the page */
+  .titleTop nav ul li {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    padding-top: 15px;
+    margin-right: 20px;
+    float: right;
+    font-size: 20px;
+  }
+
   .titleTop {
     flex-direction: row;
     margin-left: 5px;
@@ -43,6 +54,7 @@ body:not(.modal-open){
 
 .light-mode-text {
   color: #343840;
+  text-shadow:0 0 white;
 }
 
 .light-mode-bg {
@@ -160,12 +172,7 @@ background-color: #343840;
     bottom: 0;
     width: 100%;
     color: #000000;
-   
   }
-
-  element.style {
-    position: static;
-}
 
   a:hover {
     color: var(--yellow)
