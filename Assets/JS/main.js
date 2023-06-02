@@ -518,7 +518,7 @@ function convert_tens(num) {
 if (num < 10) return ones[num];
 else if (num >= 10 && num < 20) return teens[num - 10];
 else {
-  return tens[Math.floor(num / 10)] + " " + ones[num % 10];
+  return tens[Math.floor(num / 10)] + "" + ones[num % 10];
 }
 }
 
