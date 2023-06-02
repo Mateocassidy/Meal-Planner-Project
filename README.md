@@ -43,7 +43,7 @@ A website created to calculate your BMI and find meal plans to make sure youre h
 ## Credits
 * Brayden Day - https://github.com/braydenday
 * Chad Bowler - https://github.com/ChadBowler
-* Jacobs Hargraves - https://github.com/jacobhargraves
+* Jacob Hargraves - https://github.com/jacobhargraves
 * Matthew Cassidy - https://github.com/Mateocassidy
 * Bulma v0.9.4 - https://bulma.io/ created the framework
 * Bootstrap v5.3.0 - https://getbootstrap.com/ created the framework
