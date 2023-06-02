@@ -1,9 +1,9 @@
 # <Meal-Planner-Project>
-# Group #6
+# Group #5
 
 ## Description
 
-I wanted a website to display a bmi calculator with meal options that allow you to hit those calories/macros for FREE! I learned you may need to turn off AdBlocker for the API to show up, how to overwrite bulma/bootstrap framework, how to implement bulma columns and sizes, this section will be about what we learned as we code through the project.. !
+I wanted to create a FREE website to display a calorie calculator based on fitness goals with an inventory of meal options that allow you to hit those calories! I learned you may need to turn off AdBlocker for the API to show up, how to overwrite bulma/bootstrap framework, and how to implement bulma columns and sizes. We also dealt a lot with git issues and fixing merge conflicts as a group. 
 
 ## Table of Contents
 
@@ -19,7 +19,7 @@ I wanted a website to display a bmi calculator with meal options that allow you 
 
 - Brayden Day
 - Chad Bowler
-- Jacobs Hargraves
+- Jacob Hargraves
 - Matthew Cassidy
 
 ## Two API's
