@@ -15,13 +15,6 @@ function submitForm() {
     var weight = document.getElementById("weightInput").value;
     var height = document.getElementById("heightInput").value;
 
-    console.log("Goal:", goal);
-    console.log("Gender:", gender);
-    console.log("Activity Level:", activityLevel);
-    console.log("Age:", age);
-    console.log("Weight:", weight);
-    console.log("Height:", height);
-
     calorieData();
 
     // takes user input and calculates calorie needs
@@ -39,9 +32,6 @@ function submitForm() {
           return response.json();
         })
         .then(function (data) {
-            console.log(data);
-            console.log(data.data.BMR);
-            console.log(data.data.goals[goal]);
             
             // uses correct path to grab calorie goals
             if (goal === 'maintain weight') {
@@ -73,7 +63,6 @@ event.preventDefault();
 processQuery();
 });
 
-
 //variables for Edamam API request
 var appId = '7a627b23';
 var appKey = 'acf228ccc0e17cf14f56e3a37dc64431';
@@ -102,7 +91,6 @@ function processQuery() {
     calorieQuery2 = document.getElementById('calorie-query-2').value;
     excludedQuery = document.getElementById('excluded-query').value;
     if (parseInt(calorieQuery1) > parseInt(calorieQuery2)) {
-      console.log('oops');
       let temp = calorieQuery2;
       calorieQuery2 = calorieQuery1;
       calorieQuery1 = temp;    
@@ -406,8 +394,6 @@ function displayCurrentItem(current) {
     let currentItemTitle = document.createElement('h3');
     currentItemTitle.classList.add('is-size-6');
     currentItemTitle.style.fontWeight='700';
-    // currentItemTitle.style.color='white';
-    // currentItemTitle.style.textShadow='2px 2px white';
     currentItemTitle.innerHTML = itemName;
     let currentItemCard = document.createElement('div');
     currentItemCard.classList.add('card', 'position-relative', 'current-item');

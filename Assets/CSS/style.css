@@ -82,7 +82,7 @@ body:not(.modal-open){
     url(../Images/chicken_enchilada.png) center bottom no-repeat,
     url(../Images/chicken_greenbeans.png) right bottom no-repeat
     ;
-  background-size: 33.3%, 33.3%;
+  background-size: 33.3%;
   background-color: #343840; 
 }
 
@@ -94,7 +94,7 @@ body:not(.modal-open){
 
   url(../Images/chicken_greenbeans.png) right bottom no-repeat
   ;
-background-size: 33.3%, 33.3%;
+background-size: 33.3%;
 background-color: #343840;
 }
 
