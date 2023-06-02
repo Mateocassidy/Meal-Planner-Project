@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./Assets/CSS/style.css">
     
     <title>Eazy Mealz | Free Planner</title>
@@ -17,13 +20,13 @@
 <body>
 
     <!--top header part of the page. is commands will divide into columns and colors based on framework-->
-    <section class="top is-dark">
+    <section class="top is-dark" style="font-family: 'Carter One', cursive;">
         <div class="top-body">
             <div class="part" id="topPart">
-                <!-- <img id="logo" class="" src="./assets/images/logo.png" > we could add our own custom logo here if someone wants to design that but thats beyond the MVP-->
-                <div class="titleTop">
-                    <h1 id="headerTitle">Eazy Mealz</h1>
-                    <h4 class="subtitle is-4" id="subHeader">The Free Meal Planner</h4>
+                <img id="logo" class="" src="./Assets/Images/flexers_1.png" style="height: 75px; width: 75px; margin-left: 2%;"><!--  we could add our own custom logo here if someone wants to design that but thats beyond the MVP-->
+                <div class="titleTop" style="margin-left: 2%;">
+                    <h1 id="headerTitle" class="is-size-2">Eazy Mealz</h1>
+                    <h4 class="subtitle is-4 dark-mode-text is-size-5" id="subHeader">The Free Meal Planner</h4>
                 </div>
             </div>
         </div>
@@ -32,20 +35,166 @@
 
     <!-- WE NEED TO CODE IN THE BMI CALCULATOR API SOMEWHERE IN THIS SECTION OF THE BODY. -->
     <!-- Modal container -->
-    <div class="modal" data-bs-backdrop="false" id="modalContainer" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
+    <div class="modal" data-bs-backdrop="false" id="modalContainer" style="font-family: 'Roboto Slab', serif;" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog dark-mode-text">
+        <div class="modal-content modal-bg text-center">
+          <div class="modal-header col">
             <h1 class="modal-title fs-5" id="modalTitle"></h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="dark-mode-bg" style="color: #FF0907;" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-square-xmark"></i></button>
           </div>
-          <div class="modal-body" id="modalBody">
+          <div class="modal-body col" id="modalBody">
             
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer col">
             <button type="button" class="btn btn-secondary" id="modalBackBtn" data-bs-dismiss="modal">Back</button>
-            <button type="button" class="btn btn-primary" id="modalNextBtn">Next</button>
+            <button type="button" class="btn button-forward" id="modalNextBtn">Next</button>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Meals Modal -->
+    <div class="modal fade" id="mealModal" style="font-family: 'Roboto Slab', serif;" tabindex="-1" aria-labelledby="mealModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl dark-mode-text">
+        <div class="modal-content modal-bg">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="mealModalLabel">Meal Search</h1>
+            <button type="button" class="dark-mode-bg" style="color: #FF0907;" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-square-xmark"></i></button>
+          </div>
+          <div class="modal-body">
+            <form class="row g-3 justify-content-center" id="meal-modal-form">
+              <div class="col-md-6">
+                <label for="food-query" class="form-label">What type of meal are you looking for?(i.e., chicken, steak, salmon)</label>
+                <input type="text" class="form-control" id="food-query">
+              </div>
+              <div class="col-md-8">
+                <label for="diet-query" class="form-label">What type of diet are you looking for?</label>
+                <select class="form-select" id="diet-query" multiple aria-label="multiple select">
+                  <option value="0" selected>--none--</option>
+                  <option value="balanced">balanced</option>
+                  <option value="high-fiber">high-fiber</option>
+                  <option value="high-protein">high-protein</option>
+                  <option value="low-carb">low-carb</option>
+                  <option value="low-fat">low-fat</option>
+                  <option value="low-sodium">low-sodium</option>
+                </select>
+              </div>
+              <div class="col-md-8">
+                <label for="health-query" class="form-label">Any special needs?</label>
+                <select class="form-select" id="health-query" multiple aria-label="multiple select">
+                  <option value="0" selected>--none--</option>
+                  <option value="1">alcohol-free</option>
+                  <option value="2">celery-free</option>
+                  <option value="3">crustacean-free</option>
+                  <option value="4">dairy-free</option>
+                  <option value="5">DASH</option>
+                  <option value="6">egg-free</option>
+                  <option value="7">fish-free</option>
+                  <option value="8">gluten-free</option>
+                  <option value="9">immuno-supportive</option>
+                  <option value="10">keto-friendly</option>
+                  <option value="11">kidney-friendly</option>
+                  <option value="12">kosher</option>
+                  <option value="13">low-potassium</option>
+                  <option value="14">low-sugar</option>
+                  <option value="15">lupine-free</option>
+                  <option value="16">Mediterranean</option>
+                  <option value="17">mollusk-free</option>
+                  <option value="18">mustard-free</option>
+                  <option value="19">no-oil-added</option>
+                  <option value="20">paleo</option>
+                  <option value="21">peanut-free</option>
+                  <option value="22">pascatarian</option>
+                  <option value="23">pork-free</option>
+                  <option value="24">red-meat-free</option>
+                  <option value="25">sesame-free</option>
+                  <option value="26">shellfish-free</option>
+                  <option value="27">soy-free</option>
+                  <option value="28">sugar-conscious</option>
+                  <option value="29">sulfite-free</option>
+                  <option value="30">tree-nut-free</option>
+                  <option value="31">vegan</option>
+                  <option value="32">vegetarian</option>
+                  <option value="33">wheat-free</option>
+                </select>
+              </div>
+              <div class="col-md-8">
+                <label for="cuisine-query" class="form-label">What type of cuisine are you looking for?</label>
+                <select class="form-select" id="cuisine-query" multiple aria-label="multiple select">
+                  <option value="0" selected>--none--</option>
+                  <option value="1">American</option>
+                  <option value="2">Asian</option>
+                  <option value="3">British</option>
+                  <option value="4">Carribean</option>
+                  <option value="5">Central Europe</option>
+                  <option value="6">Chinese</option>
+                  <option value="7">Eastern Europe</option>
+                  <option value="8">French</option>
+                  <option value="9">Indian</option>
+                  <option value="10">Italian</option>
+                  <option value="11">Japanese</option>
+                  <option value="12">Kosher</option>
+                  <option value="13">Mediterranean</option>
+                  <option value="14">Mexican</option>
+                  <option value="15">Middle Eastern</option>
+                  <option value="16">Nordic</option>
+                  <option value="17">South American</option>
+                  <option value="18">South East Asian</option>
+                </select>
+              </div>
+              <div class="col-md-8">
+                <label for="meal-type-query" class="form-label">Which mealtime is this for?</label>
+                <select class="form-select" id="meal-type-query" multiple aria-label="multiple select">
+                  <option value="0" selected>--none--</option>
+                  <option value="1">Breakfast</option>
+                  <option value="2">Lunch</option>
+                  <option value="3">Dinner</option>
+                  <option value="4">Snack</option>
+                  <option value="5">Teatime</option>
+                </select>
+              </div>
+              <div class="col-md-8">
+                <label for="dish-query" class="form-label">What type of dish are you looking for?</label>
+                <select class="form-select" id="dish-query" multiple aria-label="multiple select">
+                  <option value="0" selected>--none--</option>
+                  <option value="1">Biscuits and cookies</option>
+                  <option value="2">Bread</option>
+                  <option value="3">Cereals</option>
+                  <option value="4">Condiments and sauces</option>
+                  <option value="5">Desserts</option>
+                  <option value="6">Drinks</option>
+                  <option value="7">Main Course</option>
+                  <option value="8">Pancake</option>
+                  <option value="9">Preps</option>
+                  <option value="10">Preserve</option>
+                  <option value="11">Salad</option>
+                  <option value="12">Sandwiches</option>
+                  <option value="13">Side dish</option>
+                  <option value="14">Soup</option>
+                  <option value="15">Starter</option>
+                  <option value="16">Sweets</option>
+                 </select>
+              </div>
+              <div class="col-md-8">
+                <span class="form-label">How many calories (for the whole recipe)?</span><br>
+                  <label for="calorie-query-1">Min</label>
+                  <input value="100" min="100" max="3000" step="50" type="number" class="form-control w-25" id="calorie-query-1">
+                  <label for="calorie-query-2">Max</label>
+                  <input value="3000" min="100" max="3000" step="50" type="number" class="form-control w-25" id="calorie-query-2">
+              </div>
+              <div class="mb-3 col-md-8">
+                <label for="excluded-query" class="form-label">Anything you want to exclude?</label>
+                <textarea class="form-control" id="excluded-query" rows="3"></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn button-forward" id="meal-query-submit" style="margin-left: 85%;"  data-bs-dismiss="modal">Submit</button>
+              </div>
+            </form>
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Search</button>
+          </div> -->
         </div>
       </div>
     </div>
@@ -53,97 +202,71 @@
 
 
   <!--these will be the search classes. is/has commands will divide into columns and colors based on framework again as above.-->
-  <div class="section main">
+  <div class="section main main-bg" id="main-section">
     <div class="container">
       <div class="columns">
-        <div class="column is-4">
+        <div class="column is-4 is-centered" style="font-family: 'Roboto Slab', serif;">
 
           <!--this will be the search box for meals with a search bar and button. the search-field can be used as a value in a $(document).ready(function() in our js code -->
-          <form id="search-form" class="notification is-primary is-size-3">
-            <label class="label">Search For Meals</label>
-            <div class="field has-addons">
-              <div class="control">
-                <input class="input" type="text" placeholder="Enter Search" id="search-field">
-              </div>
-              <div class="control">
-                <a class="button is-info is-responsive" id="search-button">Search</a>
-              </div>
-            </div>
-          </form>
+          <div id="search-form" class="box is-four-fifths is-size-3 is-centered" style="color: #ffffff; background-color: hsl(197, 96%, 43%, 0.9); box-shadow: 3px 3px black; display: flex;">
+            <label class="label" style="color: #ffffff; text-shadow: 3px 3px #404040;">Let's Get Started!</label>
+            
+            <button class="button is-large" data-bs-toggle="modal" data-bs-target="#modalContainer" id="get-ready-button" style="color: #ffffff; background-color: hsl(197, 96%, 43%, 0.0); border: 0;"><i class="fa-solid fa-user fa-2xl" style="color: #ffffff; text-shadow: 3px 3px #404040;"></i></button>
+          </div>
+          <div id="search-form" class="box is-four-fifths is-size-3 is-centered" style="color: #ffffff; background-color: hsl(197, 96%, 43%, 0.9); box-shadow: 3px 3px black; display: flex;">
+            <label class="label" style="color: #ffffff; text-shadow: 3px 3px #404040;">Search For Meals</label>
+            
+            <button class="button is-large" id="meal-search-button" data-bs-target="#mealModal" style="color: #ffffff; background-color: hsl(197, 96%, 43%, 0.0); border: 0;"><i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #ffffff; text-shadow: 3px 3px #404040;"></i></button>
+          </div>
+          <div id="current-item-container" class="box is-four-fifths is-size-3 is-centered" style="background-color: hsl(197, 96%, 43%, 0.9);">
+            
+          </div>
           <!--same as above but this will be the search history with a clear local storage button tag. the local storage can be used later in our js code-->
-          <div class="notification has-background-grey-lighter" id="search-history">
-            <div class="search-clear">
-              <label class="label" id="history-label">Previous Search:</label>
-              <button class="Control">
-                <a class="button is-info is-responsive" id="clear-localStorage">Clear</a>
-              </button>
+          <!-- <div class="box dark-mode-bg dark-mode-text" id="search-history">
+            <div class="search-clear" style="display: flex;">
+              <label class="label dark-mode-text" id="history-label">Previous Search:</label>
+              <button class="button shadow" style="color: #ffffff; background-color: #FF0907; border: 0; margin-left: auto; margin-right: auto;"><i class="fa-solid fa-xmark fa-2xl" style="color: #ffffff;"></i></button>
             </div>
             <p class="is-size-4" id='search-history-help'>Your Meal History</p>
             <ul class="is-size-5" id="search-history-list">
             </ul>
-          </div>
+          </div> -->
         </div>
         <!-- this is the end of the 2 search boxes -->
-        <div class="mainDiv column is-12 row">
-            <div class="accordion col-12 col-xl-5 accordion-flush" id="list-of-recipes">
+        <div class="mainDiv column is-5 row" style="font-family: 'Roboto Slab', serif; opacity: 0.9;">
+            <div class="accordion column is-12 col-12 col-xl-5 accordion-flush" id="list-of-recipes">
     
             </div>
         </div>
-<!--this should display an image of the meal, a title name for the meal, and the recipe section. THE EDAMAM API NEEDS TO BE LINKED INTO THIS SEARCH BAR SO WE CAN DISPLAY THE DETAILS.. right now when you search a food, it does nothing so this code will do nothing right now. -->
-          <div class="column is-8">
-          <div class="notification is-warning is-size-7" id="search-results-container" style="display: none;">
-            <div class="columns is-multiline" id="search-results" style="background-color: #19abd8;"></div>
-          </div>
-<!-- the go back button takes you back to all previous search results for that meal search. -->
-
-          <div class="notification is-default is-size-4" id="ingredients" style="display: none;">
-            <button class="button is-primary is-responsive" id="back-button">Back</button>
-            <!-- the food image, the food title, and the ingrediets in the top section with the back button next to it based on Edamam-->
-            <div class="columns">
-              <div class="column is-3">
-                <img id="ingredients_img" />
-              </div>
-              <div class="column is-9">
-                <h3 id="title" class="title"></h3>
-
-                <div class="columns">
-                  <div class="column is-9">
-                    <ul id="ingredients-list"></ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- right below the food image, food title, etc. it should show the cooking instructions/recipe based on Edamam -->
-            <div class="columns">
-              <p id="instructions"></p>
-            </div>
-           <!-- right below all of that...this can be the spot for the nutritional facts like calories, macros, etc. and maybe a foodgroup like protein/veggies/ but thats beyond our MVP. we need at least the caloric table -->
+        <div class="section column is-4">
+          <div class="content dark-mode-text" id="user-plan" style="font-family: 'Roboto Slab', serif;">
+            <p class="has-text-centered">Your Plan</p>
+            <p class="is-size-5">Current Calorie Goal:</p><textarea class="textarea has-fixed-size textarea-text" rows="1" id="calorie-goal" style="border: 0; box-shadow: inset 2px 2px darkgray; opacity: 0.8;" readonly>2000</textarea>
+            <p class="is-size-5">Calories in current meal plan:</p><textarea class="textarea has-fixed-size textarea-text" rows="1" id="total-calories" style="border: 0; box-shadow: inset 2px 2px darkgray; opacity: 0.8;" readonly></textarea>
+            <ol class="list-group column is-12 col-12 col-xl-5 is-size-6 m-0 light-mode-text" id="list-of-meals"></ol>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
-
-  <!-- this will be the footer at the bottom of the page that his all of our names -->
-  <footer class="container is-fluid" id="footer" style="position:fixed">
-  <!-- this will link all of our group members github links. the target tag opens it a new tab instead of refreshing the page youre on. brayden; I need to overwrite the bulma and fix the names from purple to white -->
-  <div class="columns is-multiline has-text-centered">
-    <div class="column is-one-quarter dev-box">
-      <a href="https://github.com/braydenday" target="_blank">Brayden Day</a>
+         <!-- this will be the footer at the bottom of the page that his all of our names -->
+  <footer class="container is-fluid" id="footer" style="position:fixed; font-family: 'Carter One', cursive;">
+    <!-- this will link all of our group members github links. the target tag opens it a new tab instead of refreshing the page youre on. brayden; I need to overwrite the bulma and fix the names from purple to white -->
+    <div class="columns is-multiline has-text-centered">
+      <div class="column is-one-quarter dev-box">
+        <a href="https://github.com/braydenday" target="_blank">Brayden Day <i class="fa-brands fa-github"></i></a>
+      </div>
+      <div class="column is-one-quarter dev-box">
+        <a href="https://github.com/ChadBowler" target="_blank">Chad Bowler <i class="fa-brands fa-github"></i></a>
+      </div>
+      <div class="column is-one-quarter dev-box">
+        <a href="https://github.com/jacobhargraves" target="_blank">Jacob Hargraves <i class="fa-brands fa-github"></i></a>
+      </div>
+      <div class="column is-one-quarter dev-box">
+        <a href="https://github.com/Mateocassidy" target="_blank">Matthew Cassidy <i class="fa-brands fa-github"></i></a>
+      </div>
     </div>
-    <div class="column is-one-quarter dev-box">
-      <a href="https://github.com/ChadBowler" target="_blank">Chad Bowler</a>
-    </div>
-    <div class="column is-one-quarter dev-box">
-      <a href="https://github.com/jacobhargraves" target="_blank">Jacob Hargraves</a>
-    </div>
-    <div class="column is-one-quarter dev-box">
-      <a href="hhttps://github.com/Mateocassidy" target="_blank">Matthew Cassidy</a>
-    </div>
-  </div>
-</footer>
-
+  </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
