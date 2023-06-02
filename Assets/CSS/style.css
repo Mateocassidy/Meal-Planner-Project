@@ -43,6 +43,7 @@ body:not(.modal-open){
 
 .light-mode-text {
   color: #343840;
+  text-shadow:0 0 white;
 }
 
 .light-mode-bg {

@@ -406,8 +406,8 @@ function displayCurrentItem(current) {
     let currentItemTitle = document.createElement('h3');
     currentItemTitle.classList.add('is-size-6');
     currentItemTitle.style.fontWeight='700';
-    currentItemTitle.style.color='white';
-    currentItemTitle.style.textShadow='2px 2px black';
+    // currentItemTitle.style.color='white';
+    // currentItemTitle.style.textShadow='2px 2px white';
     currentItemTitle.innerHTML = itemName;
     let currentItemCard = document.createElement('div');
     currentItemCard.classList.add('card', 'position-relative', 'current-item');
