@@ -111,7 +111,7 @@ function processQuery() {
     var calorieQueryString = `&calories=${calorieQuery1}-${calorieQuery2}`;
     var foodQuery = foodQuery.trim();
       foodQuery = foodQuery.replaceAll(' ', '%20');
-      foodQuery = foodQuery.replaceAll(',', '%2');
+      foodQuery = foodQuery.replaceAll(',', '');
     var dietQueryString = ProcessQueryInput(dietQuery, 'diet');
     var healthQueryString = ProcessQueryInput(healthQuery, 'health');
     var cuisineTypeQueryString = ProcessQueryInput(cuisineTypeQuery, 'cuisineType');
@@ -155,7 +155,7 @@ function ProcessStringQuery(queryString, query){
   if (queryString!=='') {
     let newString = queryString.trim();
     newString = newString.replaceAll(' ', '%20');
-    newString = newString.replaceAll(',', '%2');
+    newString = newString.replaceAll(',', '');
     newString = `&${query}=${newString}`;
     return newString;
   } else {
@@ -256,7 +256,6 @@ listOfRecipes.addEventListener('click', function(event){
 });
 //the savedSearch variable is declared globally and used in this function
 function saveSearchHistory(history) {
-    console.log(history);
     let calorieText = history.children[1].children[0].children[0].children[0].innerText;
     let proteinText = history.children[1].children[0].children[0].children[1].innerText.substr(9);
     let carbsText = history.children[1].children[0].children[0].children[2].innerText.substr(7);
@@ -524,6 +523,6 @@ else {
 }
 
 function convert(num) {
-if (num == 0) return "zero";
-else return convert_millions(num);
+  if (num == 0) return "zero";
+  else return convert_millions(num);
 }
