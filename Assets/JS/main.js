@@ -37,7 +37,17 @@ function submitForm() {
         .then(function (data) {
             console.log(data);
             console.log(data.data.BMR);
-            console.log(data.data.goals[goal].calory);
+            console.log(data.data.goals[goal]);
+            
+            // uses correct path to grab calorie goals
+            if (goal === 'maintain weight') {
+                var calorieGoalApi = Math.trunc(data.data.goals[goal])
+            } else {
+                var calorieGoalApi = Math.trunc(data.data.goals[goal].calory);
+            }
+            var calorieGoalEl = document.getElementById('calorie-goal');
+            calorieGoalEl.textContent = calorieGoalApi;
+            localStorage.setItem('calorieNeeds', calorieGoalApi);
         })
     }
 };
@@ -510,6 +520,6 @@ else {
 }
 
 function convert(num) {
-if (num == 0) return "zero";
-else return convert_millions(num);
+  if (num == 0) return "zero";
+  else return convert_millions(num);
 }
