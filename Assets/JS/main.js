@@ -108,7 +108,7 @@ function processQuery() {
     var calorieQueryString = `&calories=${calorieQuery1}-${calorieQuery2}`;
     var foodQuery = foodQuery.trim();
       foodQuery = foodQuery.replaceAll(' ', '%20');
-      foodQuery = foodQuery.replaceAll(',', '');
+      foodQuery = foodQuery.replaceAll(',', '%2');
     var dietQueryString = ProcessQueryInput(dietQuery, 'diet');
     var healthQueryString = ProcessQueryInput(healthQuery, 'health');
     var cuisineTypeQueryString = ProcessQueryInput(cuisineTypeQuery, 'cuisineType');
