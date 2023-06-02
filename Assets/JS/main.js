@@ -38,7 +38,8 @@ function submitForm() {
             console.log(data);
             console.log(data.data.BMR);
             console.log(data.data.goals[goal]);
-
+            
+            // uses correct path to grab calorie goals
             if (goal === 'maintain weight') {
                 var calorieGoalApi = Math.trunc(data.data.goals[goal])
             } else {
