@@ -1,9 +1,9 @@
 # <Meal-Planner-Project>
-# Group #6
+# Group #5
 
 ## Description
 
-I wanted a website to display a bmi calculator with meal options that allow you to hit those calories/macros for FREE! I learned you may need to turn off AdBlocker for the API to show up, how to overwrite bulma/bootstrap framework, how to implement bulma columns and sizes, resolving GIT merge conflicts with branches, implementing 2 different APIs, utilizing modals, and how to collaberate with a team on a project!
+I wanted to create a FREE website to display a calorie calculator based on fitness goals with an inventory of meal options that allow you to hit those calories! The website allows a user to create a meal plan to achieve their calorie intake goals. I learned you may need to turn off AdBlocker for the API to show up, how to overwrite bulma/bootstrap framework, how to implement bulma columns and sizes, resolving GIT merge conflicts with branches, implementing 2 different APIs, utilizing modals, and how to collaberate with a team on a project!
 
 ## Table of Contents
 
@@ -19,7 +19,7 @@ I wanted a website to display a bmi calculator with meal options that allow you 
 
 - Brayden Day
 - Chad Bowler
-- Jacobs Hargraves
+- Jacob Hargraves
 - Matthew Cassidy
 
 ## Two API's
@@ -33,7 +33,7 @@ N/A . This is a web application using an URL link. https://mateocassidy.github.i
 
 ## Usage
 
-A website created to calculate your BMI and find meal plans to make sure youre hitting those calories/macros according to your BMI!
+A website created to calculate your calories and find meal plans to make sure youre hitting those calories! To calculate how many calories you need, click on the profile icon and add info. Then search for meals to help you hit those goals!
 
 ![home-page](./Assets/Images/Screenshot5.png?raw=true "The Home Page")
 ![meal-search](./Assets/Images/Screenshot2.png?raw=true "The Meal Search")
