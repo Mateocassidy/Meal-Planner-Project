@@ -33,7 +33,7 @@ N/A . This is a web application using an URL link. https://mateocassidy.github.i
 
 ## Usage
 
-A website created to calculate your BMI and find meal plans to make sure youre hitting those calories/macros according to your BMI!
+A website created to calculate your calories and find meal plans to make sure youre hitting those calories! To calculate how many calories you need, click on the profile icon and add info. Then search for meals to help you hit those goals!
 
 ![home-page](./Assets/Images/Screenshot5.png?raw=true "The Home Page")
 ![meal-search](./Assets/Images/Screenshot2.png?raw=true "The Meal Search")
@@ -43,7 +43,7 @@ A website created to calculate your BMI and find meal plans to make sure youre h
 ## Credits
 * Brayden Day - https://github.com/braydenday
 * Chad Bowler - https://github.com/ChadBowler
-* Jacobs Hargraves - https://github.com/jacobhargraves
+* Jacob Hargraves - https://github.com/jacobhargraves
 * Matthew Cassidy - https://github.com/Mateocassidy
 * Bulma v0.9.4 - https://bulma.io/ created the framework
 * Bootstrap v5.3.0 - https://getbootstrap.com/ created the framework
