@@ -2,6 +2,10 @@
 var modalSubmitEl = document.getElementById("modalSubmit");
 modalSubmitEl.addEventListener('click', submitForm);
 
+// sets calorie goal to what is stored in local storage from submitForm function
+var calorieGoalEl = document.getElementById('calorie-goal');
+calorieGoalEl.textContent = localStorage.getItem('calorieNeeds');
+
 // Retrieves user input and calculates from fitness calc API
 function submitForm() {
     var goal = document.getElementById("goalInput").value;
@@ -45,9 +49,8 @@ function submitForm() {
             } else {
                 var calorieGoalApi = Math.trunc(data.data.goals[goal].calory);
             }
-            var calorieGoalEl = document.getElementById('calorie-goal');
-            calorieGoalEl.textContent = calorieGoalApi;
             localStorage.setItem('calorieNeeds', calorieGoalApi);
+            calorieGoalEl.textContent = localStorage.getItem('calorieNeeds');
         })
     }
 };
