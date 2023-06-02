@@ -250,17 +250,17 @@
         <div class="column is-4 is-centered" style="font-family: 'Roboto Slab', serif;">
 
           <!--this will be the search box for meals with a search bar and button. the search-field can be used as a value in a $(document).ready(function() in our js code -->
-          <div id="search-form" class="box is-four-fifths is-size-3 is-centered" style="color: #ffffff; background-color: hsl(197, 96%, 43%, 0.9); box-shadow: 3px 3px black; display: flex;">
+          <div id="search-form-start" class="box is-four-fifths is-size-3 is-centered search-box">
             <label class="label" style="color: #ffffff; text-shadow: 3px 3px #404040;">Let's Get Started!</label>
             
-            <button class="button is-large" data-bs-toggle="modal" data-bs-target="#modalContainer" id="get-ready-button" style="border-color: black; background-color: green; margin-left: 2em;"><i class="fa-solid fa-user fa-2xl" style="color: #ffffff; text-shadow: 3px 3px #404040;"></i></button>
+            <button class="button is-medium" data-bs-toggle="modal" data-bs-target="#modalContainer" id="get-ready-button" style="border-color: black; background-color: green;"><i class="fa-solid fa-user fa-2xl" style="color: #ffffff; text-shadow: 3px 3px #404040;"></i></button>
           </div>
-          <div id="search-form" class="box is-four-fifths is-size-3 is-centered" style="color: #ffffff; background-color: hsl(197, 96%, 43%, 0.9); box-shadow: 3px 3px black; display: flex;">
+          <div id="search-form-meal" class="box is-four-fifths is-size-3 is-centered search-box">
             <label class="label" style="color: #ffffff; text-shadow: 3px 3px #404040;">Search For Meals</label>
             
-            <button class="button is-large" id="meal-search-button" data-bs-target="#mealModal" style="border-color: black; background-color: green; margin-left: 2em;"><i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #ffffff; text-shadow: 3px 3px #404040;"></i></button>
+            <button class="button is-medium" id="meal-search-button" data-bs-target="#mealModal" style="border-color: black; background-color: green;"><i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #ffffff; text-shadow: 3px 3px #404040;"></i></button>
           </div>
-          <div id="current-item-container" class="box is-four-fifths is-size-3 is-centered" style="background-color: hsl(197, 96%, 43%, 0.9);">
+          <div id="current-item-container" class="box is-four-fifths  is-centered" style="background-color: hsl(197, 96%, 43%, 0.9);">
             
           </div>
           <!--same as above but this will be the search history with a clear local storage button tag. the local storage can be used later in our js code-->

@@ -15,13 +15,6 @@ function submitForm() {
     var weight = document.getElementById("weightInput").value;
     var height = document.getElementById("heightInput").value;
 
-    console.log("Goal:", goal);
-    console.log("Gender:", gender);
-    console.log("Activity Level:", activityLevel);
-    console.log("Age:", age);
-    console.log("Weight:", weight);
-    console.log("Height:", height);
-
     calorieData();
 
     // takes user input and calculates calorie needs
@@ -39,9 +32,6 @@ function submitForm() {
           return response.json();
         })
         .then(function (data) {
-            console.log(data);
-            console.log(data.data.BMR);
-            console.log(data.data.goals[goal]);
             
             // uses correct path to grab calorie goals
             if (goal === 'maintain weight') {
@@ -73,7 +63,6 @@ event.preventDefault();
 processQuery();
 });
 
-
 //variables for Edamam API request
 var appId = '7a627b23';
 var appKey = 'acf228ccc0e17cf14f56e3a37dc64431';
@@ -102,7 +91,6 @@ function processQuery() {
     calorieQuery2 = document.getElementById('calorie-query-2').value;
     excludedQuery = document.getElementById('excluded-query').value;
     if (parseInt(calorieQuery1) > parseInt(calorieQuery2)) {
-      console.log('oops');
       let temp = calorieQuery2;
       calorieQuery2 = calorieQuery1;
       calorieQuery1 = temp;    
@@ -218,28 +206,34 @@ try {
           </button>
       </h2>
       <div id="panelsStayOpen-collapse${accordionNumber}" class="accordion-collapse collapse">
-          <div class="accordion-body position-relative">
-              <div class="position-absolute top-10 start-50 macro-bg" style="width: 50%;">
-                  <p class="card-text is-size-6 m-2"><strong>Calories:</strong> ${calorieCount}</p>
-                  <p class="card-text is-size-6 m-2"><strong>Protein:</strong> ${protienCount}</p>
-                  <p class="card-text is-size-6 m-2"><strong>Carbs:</strong> ${carbCount}</p>
-                  <p class="card-text is-size-6 m-2"><strong>Fat:</strong> ${fatCount}</p>
-                  <p class="card-text is-size-6 m-2"><strong>Servings:</strong> ${servings}</p>
-                  <p class="card-text is-size-6 m-2">
-                    <button class="card-text is-size-6 add-item">
-                      <i class="fa-solid fa-circle-plus fa-lg fa-pull-left icon"></i>
-                    Click to add meal</button>
-                  </p>
+          <div class="accordion-body row">
+            <div class="col row macro-bg">
+              <div class="col-xl-6 col-md-8 col-6">
+                <img class="food-image" src="${foodImage}" alt="${recipeName}" style="width: 200px; height: 200px; padding: 10px;">
               </div>
-              <img class="food-image" src="${foodImage}" style="width: 200px; height: 200px; padding: 10px;">
-              <span class="is-size-6"><small>${ingredientList.innerHTML}</small></span>
-              <a class="is-size-6" href="${recipeLocationUrl}" target="_blank"><small>${recipeLocationUrl}</small></a>
+              <div class="col-xl-6 col-md-4 col-6">
+                <p class="card-text m-2"><strong>Calories:</strong> ${calorieCount}</p>
+                <p class="card-text m-2"><strong>Protein:</strong> ${protienCount}</p>
+                <p class="card-text m-2"><strong>Carbs:</strong> ${carbCount}</p>
+                <p class="card-text m-2"><strong>Fat:</strong> ${fatCount}</p>
+                <p class="card-text m-2"><strong>Servings:</strong> ${servings}</p>
+                <p class="card-text m-2">
+                  <button class="card-text add-item">
+                    <i class="fa-solid fa-circle-plus fa-lg fa-pull-left icon"></i>
+                  Click to add meal</button>
+                </p>
+              </div>
+                
+            </div>
+            
+            <span class="macro-bg"><small>${ingredientList.innerHTML}</small></span>
+            <a class="macro-bg" href="${recipeLocationUrl}" target="_blank"><small style="word-break: break-all">${recipeLocationUrl}</small></a>
           </div>
       </div>
       `
       listOfRecipes.appendChild(newRecipeItem);
-  }
-}
+  };
+};
 //adding recipes to storage
 listOfRecipes.addEventListener('click', function(event){
     event.stopImmediatePropagation();
@@ -256,14 +250,15 @@ listOfRecipes.addEventListener('click', function(event){
 });
 //the savedSearch variable is declared globally and used in this function
 function saveSearchHistory(history) {
-    let calorieText = history.children[1].children[0].children[0].children[0].innerText;
-    let proteinText = history.children[1].children[0].children[0].children[1].innerText.substr(9);
-    let carbsText = history.children[1].children[0].children[0].children[2].innerText.substr(7);
-    let fatText = history.children[1].children[0].children[0].children[3].innerText.substr(5);
-    let servingsText = history.children[1].children[0].children[0].children[4].innerText.substr(10);
-    let image = history.children[1].children[0].children[1].src;
-    let ingredientText = history.children[1].children[0].children[2].innerHTML;
-    let linkText = history.children[1].children[0].children[3].innerHTML;
+  console.log(history);
+  let calorieText = history.children[1].children[0].children[0].children[1].children[0].innerText;
+  let proteinText = history.children[1].children[0].children[0].children[1].children[1].innerText.substr(9);
+  let carbsText = history.children[1].children[0].children[0].children[1].children[2].innerText.substr(7);
+  let fatText = history.children[1].children[0].children[0].children[1].children[3].innerText.substr(5);
+  let servingsText = history.children[1].children[0].children[0].children[1].children[4].innerText.substr(10);
+  let image = history.children[1].children[0].children[0].children[0].children[0].src;
+  let ingredientText = history.children[1].children[0].children[1].innerHTML;
+  let linkText = history.children[1].children[0].children[2].children[0].innerHTML;
     let calorieNum = Number.parseInt(calorieText.substr(10));
     let title = history.firstElementChild.textContent;
     if (savedSearch!==null) {
@@ -305,7 +300,7 @@ function saveSearchHistory(history) {
 //add selection to side
 function addCurrentMeal(current) {
     let title = current.firstElementChild.textContent;
-    let calorieText = current.children[1].children[0].children[0].children[0].innerText;
+    let calorieText = current.children[1].children[0].children[0].children[1].children[0].innerText;
     let calorieNum = Number.parseInt(calorieText.substr(10));
 
     if (currentSessionMeals!==null) {
@@ -406,27 +401,31 @@ function displayCurrentItem(current) {
     let currentItemTitle = document.createElement('h3');
     currentItemTitle.classList.add('is-size-6');
     currentItemTitle.style.fontWeight='700';
-    // currentItemTitle.style.color='white';
-    // currentItemTitle.style.textShadow='2px 2px white';
+    currentItemTitle.style.color='white';
+    currentItemTitle.style.textShadow='1px 2px black';
     currentItemTitle.innerHTML = itemName;
     let currentItemCard = document.createElement('div');
-    currentItemCard.classList.add('card', 'position-relative', 'current-item');
-    currentItemCard.innerHTML = `  
-            <div class="position-absolute top-10 start-50 macro-bg" style="width: 50%; opacity: 0.9;">
-                <p class="card-text is-size-7 m-2"><strong>Calories:</strong> ${calorieCount}</p>
-                <p class="card-text is-size-7 m-2"><strong>Protein:</strong> ${protienCount}</p>
-                <p class="card-text is-size-7 m-2"><strong>Carbs:</strong> ${carbCount}</p>
-                <p class="card-text is-size-7 m-2"><strong>Fat:</strong> ${fatCount}</p>
-                <p class="card-text is-size-7 m-2"><strong>Servings:</strong> ${servings}</p>
-                <p class="card-text is-size-7 m-2">
-                  <button class="card-text is-size-7 remove-item" style="background-color: hsl(120, 100%, 50%, 0.0)">
-                    <i class="fa-solid fa-circle-minus fa-lg fa-pull-left icon"></i>
-                  Click to remove from list</button>
-                </p>
+    currentItemCard.classList.add('card', 'position-relative', 'current-item', 'row');
+    currentItemCard.innerHTML = ` 
+            <div class="col row macro-bg">
+              <div class="col-xl-6 col-md-12 col-6">
+                <img class="food-image" src="${foodImage}" alt="${itemName.trim()}" style="width: 150px; height: 150px; padding: 10px;">
+              </div>
+              <div class="col-xl-6 col-md-12 col-6 macro-small">
+                    <p class="card-text m-2"><strong>Calories:</strong> ${calorieCount}</p>
+                    <p class="card-text m-2"><strong>Protein:</strong> ${protienCount}</p>
+                    <p class="card-text m-2"><strong>Carbs:</strong> ${carbCount}</p>
+                    <p class="card-text m-2"><strong>Fat:</strong> ${fatCount}</p>
+                    <p class="card-text m-2"><strong>Servings:</strong> ${servings}</p>
+                    <p class="card-text m-2">
+                    <button class="card-text remove-item" style="background-color: hsl(120, 100%, 50%, 0.0)">
+                      <i class="fa-solid fa-circle-minus fa-lg fa-pull-left icon"></i>
+                    Click to remove from list</button>
+                  </p>
+              </div>
             </div>
-            <img class="food-image" src="${foodImage}" style="width: 150px; height: 150px; padding: 10px;">
-            <span class="is-size-6 m-2"><small>${ingredientList}</small></span>
-            <a class="is-size-6" href="${recipeLocationUrl}" target="_blank"><small>${recipeLocationUrl}</small></a>    
+            <span class="macro-bg"><small>${ingredientList}</small></span>
+            <a class="macro-bg" href="${recipeLocationUrl}" target="_blank"><small style="word-break: break-all;">${recipeLocationUrl}</small></a> 
     `
     try {
       while (currentItemView.hasChildNodes) {
@@ -483,7 +482,6 @@ if(event.target.classList.contains('remove-item')){
   };
 };
 });
-
 
 //code pulled from Stack Overflow to add the numbers into the Bootstrap Accordion in written form instead of numerical
 var ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
