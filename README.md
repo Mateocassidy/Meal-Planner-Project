@@ -1,5 +1,5 @@
 # <Meal-Planner-Project>
-# Group #5
+# Eazy Mealz
 
 ## Description
 
